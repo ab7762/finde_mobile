@@ -25,10 +25,7 @@ export class LoginComponent {
   }
   googleSignin() {
     const signInOptions: GoogleSignInOptions = {
-      ServerClientId:
-        "1017943398721-b9fv6hvs30iec23odh6sc9je81a5nah1.apps.googleusercontent.com",
       SignInType: GoogleSignInType.Local,
-      ForceAccountSelection: true,
     };
 
     // Please note that result can also be a failure result.
