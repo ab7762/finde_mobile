@@ -11,7 +11,7 @@ android {
   defaultConfig {
     minSdkVersion 17
     // targetSdkVersion 32
-
+multiDexEnabled true
     // Version Information
     versionCode 1
     versionName "1.0.0"

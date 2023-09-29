@@ -1,0 +1,81 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.textfield_sapo {
+  border: 2px; /* Lisää reunaviiva */
+
+  border-color: lightgrey; /* Määritä reunaviivan väri */
+  border-radius: 25; /* Pyöristä reunoja tarvittaessa */
+  padding: 17; /* Voit lisätä täytettä tarvittaessa */
+  margin-top: 0; /* Voit lisätä yläreunaa tarvittaessa */
+  font-size: 13;
+  background-color: #ffffff;
+  color: black;
+  box-shadow: 0px 1px 1px 2px;
+}
+
+.textfield_password {
+  border: 2px; /* Lisää reunaviiva */
+
+  border-color: lightgrey; /* Määritä reunaviivan väri */
+  border-radius: 25; /* Pyöristä reunoja tarvittaessa */
+  padding: 17; /* Voit lisätä täytettä tarvittaessa */
+  margin-top: 0; /* Voit lisätä yläreunaa tarvittaessa */
+  font-size: 13;
+  background-color: #ffffff;
+  color: black;
+  box-shadow: 0px 1px 1px 2px;
+}
+
+.label_email {
+  margin-left: 6%;
+  font-weight: bold;
+  font-size: 15;
+  color: white;
+  margin-bottom: 1%;
+}
+
+.label_password {
+  margin-left: 6%;
+  font-weight: bold;
+  font-size: 15;
+  color: white;
+  margin-bottom: 1%;
+}
+
+.unohtuiko {
+  font-size: 12;
+  margin-right: 8%;
+  color: #ffcb00;
+  font-weight: bold;
+}
+
+.loginButton {
+  width: 50%;
+  border-radius: 20;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+}
+
+.registered {
+  margin-left: 4%;
+  margin-top: 3%;
+  font-size: 15;
+  font-weight: bold;
+  color: white;
+}
+.registered_down {
+  margin-left: 4%;
+  font-size: 13;
+  font-weight: bold;
+  color: #ffcb00;
+}
+
+.error_email {
+  margin-left: 6%;
+  font-weight: bold;
+  font-size: 15;
+}

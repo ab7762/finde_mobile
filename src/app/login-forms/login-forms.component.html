@@ -1,0 +1,43 @@
+<StackLayout
+  width="80%"
+  marginTop="5%"
+  class="login-container"
+  [formGroup]="myForm"
+>
+  <Label class="label_email" text="Username / Email"></Label>
+
+  <TextField
+    formControlName="email"
+    class="textfield_sapo"
+    hint="Email"
+    keyboardType="email"
+  ></TextField>
+  <Label
+    *ngIf="
+      myForm.get('email').touched && myForm.get('email').hasError('required')
+    "
+    text="Email is required"
+    color="red"
+    class="error_email"
+  ></Label>
+  <FlexboxLayout justifyContent="space-between" marginTop="3%">
+    <Label class="label_password" text="Password"></Label>
+    <Label class="unohtuiko" text="Forgot your password?"></Label>
+  </FlexboxLayout>
+  <TextField
+    formControlName="password"
+    hint="Salasana"
+    secure="true"
+    class="textfield_password"
+  ></TextField>
+  <FlexboxLayout marginTop="3%">
+    <Button class="loginButton" text="Login" (tap)="submitLogin()"></Button>
+  </FlexboxLayout>
+
+  <Label class="registered" text="Not registered yet?"></Label>
+  <Label class="registered_down" text="Register"></Label>
+  <GoogleSignInButton
+    colorScheme="auto"
+    colorStyle="standard"
+  ></GoogleSignInButton>
+</StackLayout>
