@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from "../auth.service";
+import { Router } from "@angular/router";
 @Component({
   selector: "ns-login-forms",
   templateUrl: "./login-forms.component.html",
@@ -10,7 +11,11 @@ export class LoginFormsComponent {
   myForm: FormGroup;
   data: any;
 
-  constructor(private authService: AuthService, private fb: FormBuilder) {
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {
     this.myForm = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required]],
@@ -23,5 +28,9 @@ export class LoginFormsComponent {
     this.authService.logIn(email, password).subscribe((response) => {
       this.data = response;
     });
+  }
+
+  routeRegister() {
+    this.router.navigate(["register"]);
   }
 }

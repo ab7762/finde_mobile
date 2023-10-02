@@ -10,6 +10,10 @@ import { LoginComponent } from "./login/login.component";
 import { LoginFormsComponent } from "./login-forms/login-forms.component";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { RegisterComponent } from "./register/register.component";
+import { RegisterFormsComponent } from "./register-forms/register-forms.component";
+import { CheckBoxModule } from "@nativescript-community/ui-checkbox/angular";
+import { StartpageComponent } from './startpage/startpage.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -21,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     FormsModule,
     NativeScriptFormsModule,
     ReactiveFormsModule,
+    CheckBoxModule,
   ],
   declarations: [
     AppComponent,
@@ -28,6 +33,9 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     ItemDetailComponent,
     LoginComponent,
     LoginFormsComponent,
+    RegisterComponent,
+    RegisterFormsComponent,
+    StartpageComponent,
   ],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],

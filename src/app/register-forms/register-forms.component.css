@@ -1,0 +1,106 @@
+.register-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.textfield_sapo {
+  border: 2px; /* Lisää reunaviiva */
+
+  border-color: lightgrey; /* Määritä reunaviivan väri */
+  border-radius: 25; /* Pyöristä reunoja tarvittaessa */
+  padding: 14; /* Voit lisätä täytettä tarvittaessa */
+  margin-top: 2; /* Voit lisätä yläreunaa tarvittaessa */
+  font-size: 13;
+  background-color: #ffffff;
+  color: black;
+  box-shadow: 1px 1px 1px 2px;
+}
+
+.textfield_firstname {
+  border: 2px; /* Lisää reunaviiva */
+
+  border-color: lightgrey; /* Määritä reunaviivan väri */
+  border-radius: 25; /* Pyöristä reunoja tarvittaessa */
+  padding: 14; /* Voit lisätä täytettä tarvittaessa */
+  margin-top: 2%; /* Voit lisätä yläreunaa tarvittaessa */
+  font-size: 13;
+  background-color: #ffffff;
+  color: black;
+  box-shadow: 1px 1px 1px 2px;
+}
+
+.textfield_lastname {
+  border: 2px; /* Lisää reunaviiva */
+
+  border-color: lightgrey; /* Määritä reunaviivan väri */
+  border-radius: 25; /* Pyöristä reunoja tarvittaessa */
+  padding: 14; /* Voit lisätä täytettä tarvittaessa */
+  margin-top: 2%; /* Voit lisätä yläreunaa tarvittaessa */
+  font-size: 13;
+  background-color: #ffffff;
+  color: black;
+  box-shadow: 1px 1px 1px 2px;
+}
+
+.textfield_password {
+  border: 2px solid lightgrey;
+  border-radius: 25; /* Pyöristä reunoja tarvittaessa */
+  padding: 14; /* Voit lisätä täytettä tarvittaessa */
+  margin-top: 2%; /* Voit lisätä yläreunaa tarvittaessa */
+  font-size: 13;
+  background-color: #ffffff;
+  color: black;
+  box-shadow: 1px 1px 1px 2px;
+}
+
+.textfield_password2 {
+  border: 2px; /* Lisää reunaviiva */
+
+  border-color: lightgrey; /* Määritä reunaviivan väri */
+  border-radius: 25; /* Pyöristä reunoja tarvittaessa */
+  padding: 14; /* Voit lisätä täytettä tarvittaessa */
+  margin-top: 2%; /* Voit lisätä yläreunaa tarvittaessa */
+  font-size: 13;
+  background-color: #ffffff;
+  color: black;
+  box-shadow: 1px 1px 1px 2px;
+}
+
+.checkbox {
+  margin-left: 3%;
+  margin-right: 5%;
+  color: white;
+  background-color: white;
+}
+
+.signupbutton {
+  width: 50%;
+  border-radius: 20;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+}
+
+.registered {
+  margin-left: 4%;
+  margin-top: 3%;
+  font-size: 15;
+  font-weight: bold;
+  color: white;
+}
+.registered_down {
+  margin-left: 4%;
+  font-size: 13;
+  font-weight: bold;
+  color: #ffcb00;
+}
+.error {
+  color: red;
+  font-style: bold;
+  margin-left: 4%;
+}
+
+.boxerror {
+  border-color: red;
+  border-width: 2;
+}

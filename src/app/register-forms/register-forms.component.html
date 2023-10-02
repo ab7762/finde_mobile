@@ -1,0 +1,104 @@
+<ScrollView height="110%">
+  <StackLayout marginTop="5%" height="110%">
+    <StackLayout
+      width="80%"
+      marginTop="5%"
+      class="register-container"
+      [formGroup]="myForm"
+    >
+      <TextField
+        [ngClass]="{ boxerror: emailError }"
+        class="textfield_sapo"
+        formControlName="email"
+        hint="Email"
+        keyboardType="email"
+      ></TextField>
+
+      <Label
+        *ngIf="
+          myForm.get('email').touched && myForm.get('email').hasError('email')
+        "
+        text="Email is not valid"
+        color="red"
+        class="error_email"
+      ></Label>
+      <TextField
+        class="textfield_firstname"
+        formControlName="firstname"
+        hint="First name"
+        keyboardType="email"
+      ></TextField>
+      <Label
+        *ngIf="
+          myForm.get('firstname').touched &&
+          myForm.get('firstname').hasError('required')
+        "
+        text="First name required"
+        color="red"
+        class="error_email"
+      ></Label>
+      <TextField
+        class="textfield_lastname"
+        formControlName="lastname"
+        hint="Last name"
+        keyboardType="email"
+      ></TextField>
+      <Label
+        *ngIf="
+          myForm.get('lastname').touched &&
+          myForm.get('lastname').hasError('required')
+        "
+        text="Last name required"
+        color="red"
+        class="error_email"
+      ></Label>
+      <TextField
+        [ngClass]="{ boxerror: salasanaError }"
+        class="textfield_password"
+        formControlName="password"
+        hint="Password"
+        secure="true"
+      ></TextField>
+      <TextField
+        [ngClass]="{ boxerror: salasanaError }"
+        class="textfield_password2"
+        formControlName="password2"
+        hint="Confirm password"
+        keyboardType="email"
+        secure="true"
+      ></TextField>
+    </StackLayout>
+
+    <stackLayout width="80%">
+      <CheckBox
+        fillColor="white"
+        class="checkbox"
+        text="I agree to the terms of use and have read the privacy policy"
+        [(ngModel)]="isChecked"
+        (checkedChange)="changeChecked($event)"
+      ></CheckBox>
+
+      <FlexboxLayout marginTop="7%">
+        <Button
+          [isEnabled]="
+            isChecked &&
+            myForm.get('email').value.length > 0 &&
+            myForm.get('firstname').value.length > 0 &&
+            myForm.get('lastname').value.length > 0 &&
+            myForm.get('password').value.length > 0
+          "
+          class="signupbutton"
+          text="Create account"
+          (tap)="submitSignUp()"
+        ></Button>
+      </FlexboxLayout>
+      <Label
+        *ngIf="salasanaError || emailError"
+        text="Password confirmation error"
+        class="error"
+      ></Label>
+
+      <Label class="registered" text="Already registered?"></Label>
+      <Label class="registered_down" text="Login" (tap)="routeLogin()"></Label>
+    </stackLayout> </StackLayout
+></ScrollView>

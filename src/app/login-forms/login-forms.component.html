@@ -35,7 +35,11 @@
   </FlexboxLayout>
 
   <Label class="registered" text="Not registered yet?"></Label>
-  <Label class="registered_down" text="Register"></Label>
+  <Label
+    class="registered_down"
+    text="Register"
+    (tap)="routeRegister()"
+  ></Label>
   <GoogleSignInButton
     colorScheme="auto"
     colorStyle="standard"
