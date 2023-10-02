@@ -19,6 +19,7 @@
     "@nativescript/theme": "~3.0.2",
     "bootstrap-icons": "^1.10.5",
     "@nativescript-community/ui-checkbox": "^2.0.9",
+    "@auth0/angular-jwt": "^5.0.2",
     "rxjs": "~7.6.0",
     "zone.js": "~0.13.0",
     "@nstudio/nativescript-checkbox": "^2.0.5"
