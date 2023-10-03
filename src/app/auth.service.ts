@@ -4,15 +4,19 @@ import { Observable, of } from "rxjs";
 import { map } from "rxjs/operators";
 import { catchError } from "rxjs/operators";
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { SecureStorage } from "@nativescript/secure-storage";
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
+  private secureStorage: SecureStorage;
   url: string = "https://backendwithlogin-1-u7980985.deta.app/users/login";
   url2: string = "https://backendwithlogin-1-u7980985.deta.app/users/register";
   public token: string;
   private jwtHelp = new JwtHelperService();
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.secureStorage = new SecureStorage();
+  }
   logIn(email: string, password: string): Observable<boolean> {
     console.log("Terve");
     return this.http.post(this.url, { sposti: email, salasana: password }).pipe(
@@ -24,9 +28,16 @@ export class AuthService {
           const payload = this.jwtHelp.decodeToken(token);
           console.log(payload);
           if (payload.sposti === email) {
-            console.log(payload.sposti);
+            this.secureStorage
+              .set({
+                key: "token",
+                value: token,
+              })
+              .then((suc) => {
+                console.log("Done", suc);
+              });
           }
-          return token; // Palauta true, kun token on saatavilla
+          return true; // Palauta true, kun token on saatavilla
         } else {
           console.log("Pieleen meni");
           return false;
