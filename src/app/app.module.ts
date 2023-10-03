@@ -13,9 +13,10 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RegisterComponent } from "./register/register.component";
 import { RegisterFormsComponent } from "./register-forms/register-forms.component";
 import { CheckBoxModule } from "@nativescript-community/ui-checkbox/angular";
-import { StartpageComponent } from './startpage/startpage.component';
-import { BottomNavComponent } from './bottom-nav/bottom-nav.component';
-
+import { StartpageComponent } from "./startpage/startpage.component";
+import { BottomNavComponent } from "./bottom-nav/bottom-nav.component";
+import { StoreModule } from "@ngrx/store";
+import { authReducer, AuthState } from "./auth.reducer";
 @NgModule({
   bootstrap: [AppComponent],
   imports: [
@@ -27,6 +28,7 @@ import { BottomNavComponent } from './bottom-nav/bottom-nav.component';
     NativeScriptFormsModule,
     ReactiveFormsModule,
     CheckBoxModule,
+    StoreModule.forRoot({ appState: authReducer }),
   ],
   declarations: [
     AppComponent,

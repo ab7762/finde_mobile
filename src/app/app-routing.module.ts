@@ -11,7 +11,7 @@ import { StartpageComponent } from "./startpage/startpage.component";
 import { BottomNavComponent } from "./bottom-nav/bottom-nav.component";
 
 const routes: Routes = [
-  { path: "", redirectTo: "bottom-nav", pathMatch: "full" },
+  { path: "", redirectTo: "start", pathMatch: "full" },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "start", component: StartpageComponent },

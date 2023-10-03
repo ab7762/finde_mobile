@@ -32,9 +32,7 @@ export class LoginFormsComponent {
   submitLogin() {
     const email = this.myForm.get("email").value;
     const password = this.myForm.get("password").value;
-    this.authService.logIn(email, password).subscribe((response) => {
-      this.store.dispatch(login());
-    });
+    this.authService.logIn(email, password).subscribe((response) => {});
   }
 
   routeRegister() {

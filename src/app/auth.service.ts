@@ -5,6 +5,10 @@ import { map } from "rxjs/operators";
 import { catchError } from "rxjs/operators";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { SecureStorage } from "@nativescript/secure-storage";
+import { Store } from "@ngrx/store";
+import { AuthState } from "./auth.reducer";
+import { login, logout } from "./auth.actions";
+
 @Injectable({
   providedIn: "root",
 })
@@ -12,10 +16,12 @@ export class AuthService {
   private secureStorage: SecureStorage;
   url: string = "https://backendwithlogin-1-u7980985.deta.app/users/login";
   url2: string = "https://backendwithlogin-1-u7980985.deta.app/users/register";
+  loggedIn$: Observable<boolean>;
   public token: string;
   private jwtHelp = new JwtHelperService();
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private store: Store<AuthState>) {
     this.secureStorage = new SecureStorage();
+    this.loggedIn$ = this.store.select((state) => state.loggedIn);
   }
   logIn(email: string, password: string): Observable<boolean> {
     console.log("Terve");
@@ -37,9 +43,15 @@ export class AuthService {
                 console.log("Done", suc);
               });
           }
+          this.store.dispatch(login());
+          this.store.subscribe((s) => {
+            console.log("Kirjautumistila:", s);
+          });
           return true; // Palauta true, kun token on saatavilla
         } else {
-          console.log("Pieleen meni");
+          this.store.subscribe((s) => {
+            console.log("Kirjautumistila:", s);
+          });
           return false;
         } // Palauta false, jos tokenia ei löydy
       }),
