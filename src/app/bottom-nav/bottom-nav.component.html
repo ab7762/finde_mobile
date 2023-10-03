@@ -1,0 +1,42 @@
+<MDBottomNavigation [selectedIndex]="active">
+  <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
+  <MDTabStrip>
+    <MDTabStripItem (tap)="changeActive(1)" [ngClass]="{ active: active == 1 }">
+      <Label text="Events"></Label>
+      <Image src="font://&#xf0f3;" class="fas"></Image>
+    </MDTabStripItem>
+    <MDTabStripItem
+      (tap)="changeActive(2)"
+      [ngClass]="{ active: active == 2 }"
+      class="special"
+    >
+      <Label text="Locations"></Label>
+      <Image src="font://&#xf3c5;" class="fas"></Image>
+    </MDTabStripItem>
+    <MDTabStripItem
+      (tap)="changeActive(3)"
+      [ngClass]="{ active: active == 3 }"
+      class="special"
+    >
+      <Label text="Person"></Label>
+      <Image src="font://&#xf183;" class="fas"></Image>
+    </MDTabStripItem>
+  </MDTabStrip>
+
+  <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
+  <MDTabContentItem>
+    <GridLayout>
+      <Label text="Events" class="h2 text-center"></Label>
+    </GridLayout>
+  </MDTabContentItem>
+  <MDTabContentItem>
+    <GridLayout>
+      <Label text="Map here" class="h2 text-center"></Label>
+    </GridLayout>
+  </MDTabContentItem>
+  <MDTabContentItem>
+    <GridLayout>
+      <Label text="Personel filter here" class="h2 text-center"></Label>
+    </GridLayout>
+  </MDTabContentItem>
+</MDBottomNavigation>

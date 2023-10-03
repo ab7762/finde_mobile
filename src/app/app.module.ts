@@ -14,6 +14,7 @@ import { RegisterComponent } from "./register/register.component";
 import { RegisterFormsComponent } from "./register-forms/register-forms.component";
 import { CheckBoxModule } from "@nativescript-community/ui-checkbox/angular";
 import { StartpageComponent } from './startpage/startpage.component';
+import { BottomNavComponent } from './bottom-nav/bottom-nav.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -36,6 +37,7 @@ import { StartpageComponent } from './startpage/startpage.component';
     RegisterComponent,
     RegisterFormsComponent,
     StartpageComponent,
+    BottomNavComponent,
   ],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],

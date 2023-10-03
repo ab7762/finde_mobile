@@ -8,12 +8,14 @@ import { ItemsComponent } from "./item/items.component";
 import { ItemDetailComponent } from "./item/item-detail.component";
 import { RegisterComponent } from "./register/register.component";
 import { StartpageComponent } from "./startpage/startpage.component";
+import { BottomNavComponent } from "./bottom-nav/bottom-nav.component";
 
 const routes: Routes = [
-  { path: "", redirectTo: "start", pathMatch: "full" },
+  { path: "", redirectTo: "bottom-nav", pathMatch: "full" },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "start", component: StartpageComponent },
+  { path: "bottom-nav", component: BottomNavComponent },
 ];
 
 @NgModule({
