@@ -17,6 +17,7 @@ import { StartpageComponent } from "./startpage/startpage.component";
 import { BottomNavComponent } from "./bottom-nav/bottom-nav.component";
 import { StoreModule } from "@ngrx/store";
 import { authReducer, AuthState } from "./auth.reducer";
+
 @NgModule({
   bootstrap: [AppComponent],
   imports: [

@@ -9,13 +9,17 @@ import { ItemDetailComponent } from "./item/item-detail.component";
 import { RegisterComponent } from "./register/register.component";
 import { StartpageComponent } from "./startpage/startpage.component";
 import { BottomNavComponent } from "./bottom-nav/bottom-nav.component";
-
+import { AuthGuard } from "./auth.guard";
 const routes: Routes = [
   { path: "", redirectTo: "start", pathMatch: "full" },
   { path: "login", component: LoginComponent },
-  { path: "register", component: RegisterComponent },
+  { path: "register", component: RegisterComponent, canActivate: [AuthGuard] },
   { path: "start", component: StartpageComponent },
-  { path: "bottom-nav", component: BottomNavComponent },
+  {
+    path: "bottom-nav",
+    component: BottomNavComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
