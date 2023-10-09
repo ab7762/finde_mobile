@@ -17,6 +17,7 @@ import { StartpageComponent } from "./startpage/startpage.component";
 import { BottomNavComponent } from "./bottom-nav/bottom-nav.component";
 import { StoreModule } from "@ngrx/store";
 import { authReducer, AuthState } from "./auth.reducer";
+import { MapComponent } from "./map/map.component";
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -41,6 +42,7 @@ import { authReducer, AuthState } from "./auth.reducer";
     RegisterFormsComponent,
     StartpageComponent,
     BottomNavComponent,
+    MapComponent,
   ],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],

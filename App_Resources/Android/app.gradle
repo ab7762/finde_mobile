@@ -9,7 +9,8 @@ android {
   // ndkVersion ""
 
   defaultConfig {
-    minSdkVersion 17
+    applicationId "com.example.finde"
+    minSdkVersion 19
     // targetSdkVersion 32
 multiDexEnabled true
     // Version Information

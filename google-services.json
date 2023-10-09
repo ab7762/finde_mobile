@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1017943398721",
+    "project_id": "finde-400309",
+    "storage_bucket": "finde-400309.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1017943398721:android:950f7fb7cfdaeef825e9c0",
+        "android_client_info": {
+          "package_name": "com.example.finde"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1017943398721-imphefr2gaqacrsgp8iab2a8hckkott4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.finde",
+            "certificate_hash": "d69a4bae7b1df425f3a1ff06032b98ca28089f24"
+          }
+        },
+        {
+          "client_id": "1017943398721-7m10k9gvg9hjv9osttgihpcld0p03jg9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOgmKXvYAACAbejL6QvDoCofGMrP4rZTc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1017943398721-7m10k9gvg9hjv9osttgihpcld0p03jg9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
