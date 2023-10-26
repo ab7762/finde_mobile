@@ -10,15 +10,23 @@ import { RegisterComponent } from "./register/register.component";
 import { StartpageComponent } from "./startpage/startpage.component";
 import { BottomNavComponent } from "./bottom-nav/bottom-nav.component";
 import { AuthGuard } from "./auth.guard";
+import { MapComponent } from "./map/map.component";
+import { NotificationsComponent } from "./notifications/notifications.component";
 const routes: Routes = [
-  { path: "", redirectTo: "start", pathMatch: "full" },
+  { path: "", redirectTo: "notifications", pathMatch: "full" },
   { path: "login", component: LoginComponent },
-  { path: "register", component: RegisterComponent, canActivate: [AuthGuard] },
+  { path: "register", component: RegisterComponent },
   { path: "start", component: StartpageComponent },
   {
     path: "bottom-nav",
     component: BottomNavComponent,
     canActivate: [AuthGuard],
+  },
+  { path: "login", component: LoginComponent },
+  { path: "map", component: MapComponent, canActivate: [AuthGuard] },
+  {
+    path: "notifications",
+    component: NotificationsComponent,
   },
 ];
 

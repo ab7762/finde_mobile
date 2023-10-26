@@ -1,6 +1,12 @@
 import { Component } from "@angular/core";
-
+import { JwtHelperService } from "@auth0/angular-jwt";
+import { SecureStorage } from "@nativescript/secure-storage";
 import { LoginFormsComponent } from "../login-forms/login-forms.component";
+import { Store } from "@ngrx/store";
+import { Router } from "@angular/router";
+import { AuthState } from "../auth.reducer";
+import { Observable, of } from "rxjs";
+import { catchError } from "rxjs/operators";
 import {
   GoogleSignInOptions,
   GoogleSignInType,
@@ -12,14 +18,23 @@ import {
   wireInGoogleSignIn,
   wireInFacebookLogin,
 } from "@klippa/nativescript-login";
+import { login } from "../auth.actions";
 @Component({
   selector: "ns-login",
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.css"],
 })
 export class LoginComponent {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private store: Store<{ appState: AuthState }>,
+    private router: Router
+  ) {
+    this.secureStorage = new SecureStorage();
+  }
   token: any;
+  private secureStorage: SecureStorage;
+  private jwtHelp = new JwtHelperService();
   onTap() {
     console.log("Google here i Come");
   }
@@ -49,6 +64,10 @@ export class LoginComponent {
             if (token) {
               this.token = token;
               console.log(token);
+              this.store.dispatch(login());
+
+              alert("Login succesfull! Welcome");
+              this.router.navigate(["bottom-nav"]);
               return true; // Palauta true, kun token on saatavilla
             } else {
               console.log("Pieleen meni");

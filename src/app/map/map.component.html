@@ -1,1 +1,17 @@
-<Lable text="Map"></Lable>
+<ContentView height="100%" width="100%">
+  <Mapbox
+    accessToken="pk.eyJ1IjoibWlra28xOTg1IiwiYSI6ImNsbmlyazhqczA2N20yeHFvbGpxaHozOW4ifQ.GdqmP1CH2_dAOa40He98-Q"
+    mapStyle="traffic_day"
+    latitude="62.24147"
+    longitude="25.72088"
+    hideCompass="true"
+    zoomLevel="18"
+    showUserLocation="true"
+    disableZoom="false"
+    disableRotation="false"
+    disableScroll="false"
+    disableTilt="false"
+    (mapReady)="onMapReady($event)"
+  >
+  </Mapbox>
+</ContentView>
