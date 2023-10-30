@@ -17,8 +17,9 @@ import { StartpageComponent } from "./startpage/startpage.component";
 import { BottomNavComponent } from "./bottom-nav/bottom-nav.component";
 import { StoreModule } from "@ngrx/store";
 import { authReducer, AuthState } from "./auth.reducer";
-import { MapComponent } from './map/map.component';
-import { NotificationsComponent } from './notifications/notifications.component';
+import { MapComponent } from "./map/map.component";
+import { NotificationsComponent } from "./notifications/notifications.component";
+import { CardComponent } from "./card/card.component";
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -29,6 +30,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     HttpClientModule,
     FormsModule,
     NativeScriptFormsModule,
+
     ReactiveFormsModule,
     CheckBoxModule,
     StoreModule.forRoot({ appState: authReducer }),
@@ -45,6 +47,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     BottomNavComponent,
     MapComponent,
     NotificationsComponent,
+    CardComponent,
   ],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],

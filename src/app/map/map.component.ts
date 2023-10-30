@@ -23,8 +23,8 @@ export class MapComponent {
     console.log("map is ready");
     args.map.addMarkers([
       {
-        lat: 62.24147,
-        lng: 25.72088,
+        lat: this.events[0].sijainti[0].long,
+        lng: this.events[0].sijainti[0].lat,
         title: this.events[0].nimi,
         subtitle: this.events[0].kuvaus,
 
