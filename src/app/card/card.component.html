@@ -1,49 +1,57 @@
-<CardView class="cardStyle" margin="10" elevation="40" radius="1">
-  <StackLayout>
-    <Image
-      width="100%"
-      height="30%"
-      stretch="aspectFill"
-      src="~/images/harrastukset.jpg"
-      class="img"
-    ></Image>
-    <label
-      class="createdBy text-left"
-      horizontalAlignment="left"
-      text="Tähän kuva"
-      row="1"
-      col="2"
-      textWrap="true"
-    ></label>
-    <label
-      class="createdOn text-left"
-      horizontalAlignment="left"
-      text="Carry on"
-      row="2"
-      col="2"
-    ></label>
-    <image
-      src="../../images/harrastukset.jpg"
-      stretch="aspectFit"
-      colSpan="3"
-      col="1"
-      row="3"
-    ></image>
-    <label
-      horizontalAlignment="left"
-      text="item.Title"
-      colSpan="3"
-      row="4"
-      textWrap="true"
-      col="1"
-    ></label>
-    <label
-      horizontalAlignment="left"
-      text="item.Summary"
-      textWrap="true"
-      col="1"
-      row="5"
-      colSpan="3"
-    ></label>
-  </StackLayout>
+<CardView class="cardStyle" margin="2%" elevation="40" radius="1">
+  <FlexboxLayout flexDirection="row">
+    <Image width="35%" src="~/images/harrastukset.jpg" class="img"></Image>
+    <StackLayout flexGrow="1">
+      <FlexboxLayout justifyContent="space-between">
+        <label class="nimi" text="Matti ja Teppo keikka" color="white"></label>
+        <label class="x_ikoni" text="X" horizontalAlignment="right"></label>
+      </FlexboxLayout>
+      <FlexboxLayout>
+        <Image
+          src="font://&#xf133;"
+          class="fas"
+          width="10"
+          color="white"
+        ></Image>
+        <label class="paivamaara" text="20.9.2023"></label>
+      </FlexboxLayout>
+
+      <FlexboxLayout>
+        <Image
+          src="font://&#xf041;"
+          class="fas"
+          width="10"
+          color="white"
+        ></Image>
+        <label
+          class="henry"
+          horizontalAlignment="left"
+          text="Henry's pub"
+        ></label>
+      </FlexboxLayout>
+      <FlexboxLayout justifyContent="space-between">
+        <FlexboxLayout flexDirection="row" justifyContent="space-between">
+          <Image
+            src="font://&#xf153;"
+            class="fas"
+            width="10"
+            color="white"
+          ></Image>
+          <label
+            class="tickets"
+            horizontalAlignment="left"
+            text="www.ticketets.com"
+          ></label>
+        </FlexboxLayout>
+        <Image
+          src="font://&#xf004;"
+          id="sydan"
+          class="fas"
+          width="10"
+          color="white"
+          horizontalAlignment="right"
+        ></Image>
+      </FlexboxLayout>
+    </StackLayout>
+  </FlexboxLayout>
 </CardView>

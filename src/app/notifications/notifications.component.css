@@ -1,5 +1,9 @@
 .body {
-  background-color: #64427f;
+  background-image: url("~/icons/kuvio_2_1.png");
+  background-size: 90% 80%;
+  background-repeat: no-repeat;
+  background-position: -400% 300%;
+  background-color: #323439;
 }
 
 .header {
@@ -9,4 +13,27 @@
   color: white;
   font-weight: bold;
   margin-top: 5%;
+}
+
+.logo {
+  width: 50%;
+  margin-top: 2%;
+}
+
+.ilmoitukset {
+  text-align: center;
+  color: white;
+  font-size: 30;
+  letter-spacing: 0.2;
+}
+
+.viiva {
+  color: white;
+  text-align: center;
+}
+
+.events {
+  color: white;
+  text-align: center;
+  font-family: fantasy;
 }
