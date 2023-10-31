@@ -20,6 +20,7 @@ import { authReducer, AuthState } from "./auth.reducer";
 import { MapComponent } from "./map/map.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { CardComponent } from "./card/card.component";
+import { PersonelComponent } from './personel/personel.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -48,6 +49,7 @@ import { CardComponent } from "./card/card.component";
     MapComponent,
     NotificationsComponent,
     CardComponent,
+    PersonelComponent,
   ],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],

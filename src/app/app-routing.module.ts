@@ -12,8 +12,9 @@ import { BottomNavComponent } from "./bottom-nav/bottom-nav.component";
 import { AuthGuard } from "./auth.guard";
 import { MapComponent } from "./map/map.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
+import { PersonelComponent } from "./personel/personel.component";
 const routes: Routes = [
-  { path: "", redirectTo: "notifications", pathMatch: "full" },
+  { path: "", redirectTo: "personel", pathMatch: "full" },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "start", component: StartpageComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
     path: "notifications",
     component: NotificationsComponent,
   },
+  { path: "personel", component: PersonelComponent },
 ];
 
 @NgModule({
