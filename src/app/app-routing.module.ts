@@ -13,7 +13,7 @@ import { AuthGuard } from "./auth.guard";
 import { MapComponent } from "./map/map.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
 const routes: Routes = [
-  { path: "", redirectTo: "notifications", pathMatch: "full" },
+  { path: "", redirectTo: "register", pathMatch: "full" },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "start", component: StartpageComponent },

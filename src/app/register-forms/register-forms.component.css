@@ -1,6 +1,7 @@
 .register-container {
   display: flex;
   flex-direction: column;
+
 }
 
 .textfield_sapo {
@@ -18,7 +19,6 @@
 
 .textfield_firstname {
   border: 2px; /* Lisää reunaviiva */
-
   border-color: lightgrey; /* Määritä reunaviivan väri */
   border-radius: 25; /* Pyöristä reunoja tarvittaessa */
   padding: 14; /* Voit lisätä täytettä tarvittaessa */
@@ -79,20 +79,21 @@
   background-color: black;
   color: white;
   font-weight: bold;
+  justify-content: center;
+  margin-left: 215px; /* Keskittämistä */
 }
 
 .registered {
-  margin-left: 4%;
-  margin-top: 3%;
   font-size: 15;
   font-weight: bold;
   color: white;
+  margin-left: 245px; /* Keskittämistä */
 }
 .registered_down {
-  margin-left: 4%;
   font-size: 13;
   font-weight: bold;
   color: #ffcb00;
+  margin-left: 378px; /* Keskittämistä */
 }
 .error {
   color: red;
