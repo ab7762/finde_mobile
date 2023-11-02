@@ -14,7 +14,7 @@ import { MapComponent } from "./map/map.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { PersonelComponent } from "./personel/personel.component";
 const routes: Routes = [
-  { path: "", redirectTo: "personel", pathMatch: "full" },
+  { path: "", redirectTo: "start", pathMatch: "full" },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "start", component: StartpageComponent },
@@ -28,8 +28,9 @@ const routes: Routes = [
   {
     path: "notifications",
     component: NotificationsComponent,
+    canActivate: [AuthGuard],
   },
-  { path: "personel", component: PersonelComponent },
+  { path: "personel", component: PersonelComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

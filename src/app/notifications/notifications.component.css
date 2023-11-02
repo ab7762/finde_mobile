@@ -6,6 +6,10 @@
   background-color: #323439;
 }
 
+ScrollView {
+  height: 100%;
+}
+
 .header {
   text-align: center;
   margin-top: 3%;

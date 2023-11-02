@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { registerElement } from "@nativescript/angular";
 import { CardView } from "@nstudio/nativescript-cardview";
 registerElement("CardView", () => CardView);
@@ -8,4 +8,6 @@ registerElement("CardView", () => CardView);
   templateUrl: "./card.component.html",
   styleUrls: ["./card.component.css"],
 })
-export class CardComponent {}
+export class CardComponent {
+  @Input() eventData: any;
+}

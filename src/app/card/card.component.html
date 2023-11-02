@@ -1,38 +1,38 @@
-<CardView class="cardStyle" margin="2%" elevation="40" radius="1">
+<CardView class="cardStyle" margin="20" elevation="40" radius="1">
   <FlexboxLayout flexDirection="row">
-    <Image width="35%" src="~/images/harrastukset.jpg" class="img"></Image>
+    <Image width="35%" [src]="eventData.kuvaUrl" class="img"></Image>
     <StackLayout flexGrow="1">
       <FlexboxLayout justifyContent="space-between">
-        <label class="nimi" text="Matti ja Teppo keikka" color="white"></label>
+        <label class="nimi" [text]="eventData.nimi" color="white"></label>
         <label class="x_ikoni" text="X" horizontalAlignment="right"></label>
       </FlexboxLayout>
       <FlexboxLayout>
         <Image
-          src="font://&#xf133;"
+          src="~/icons/kalenteriVarillinen.png"
           class="fas"
           width="10"
           color="white"
         ></Image>
-        <label class="paivamaara" text="20.9.2023"></label>
+        <label class="paivamaara" [text]="eventData.paivamaara"></label>
       </FlexboxLayout>
 
       <FlexboxLayout>
         <Image
-          src="font://&#xf041;"
+          src="~/icons/markerVarillinen.png"
           class="fas"
-          width="10"
+          width="12"
           color="white"
         ></Image>
         <label
           class="henry"
           horizontalAlignment="left"
-          text="Henry's pub"
+          [text]="eventData.sijainti[0].paikkakunta"
         ></label>
       </FlexboxLayout>
       <FlexboxLayout justifyContent="space-between">
         <FlexboxLayout flexDirection="row" justifyContent="space-between">
           <Image
-            src="font://&#xf153;"
+            src="~/icons/lippuVarillinen.png"
             class="fas"
             width="10"
             color="white"
