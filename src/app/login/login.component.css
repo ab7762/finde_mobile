@@ -1,12 +1,17 @@
 .body {
-  background-color: #64427f;
+  background-color: #323439;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-image: url("~/images/Group26.png"); /* ympyrät */
+  background-position: bottom; /* Position the image at the bottom */
+  background-repeat: no-repeat; /* Prevent repeating the image */
+  background-size: 110% 35%; /* Customize the background image size */
 }
 
 .otsikko {
   text-align: center;
   margin-top: 3%;
   font-size: 30;
-  color: white;
+  color: #F8EFD6;
   font-weight: bold;
 }
 
@@ -25,7 +30,7 @@
 
 .teksti {
   font-size: 17;
-  color: #ffffff;
+  color: #F8EFD6;
 }
 
 .sapo {
@@ -35,9 +40,23 @@
   font-size: 18;
 
   font-weight: bold;
-  color: #ffffff;
+  color: #F8EFD6;
 }
 
 .registered {
   margin-left: 1%;
+}
+
+/* FindE logon tyylittelyt */
+.logo {
+  width: 500px; /* Koko */
+  margin-top: 50px;
+  height: auto;
+}
+
+/* register ja your account details kuvan tyylittelyt */
+.accDetails {
+  width: 800px; /* Adjust the size as needed */
+  margin-top: 100px;
+  height: auto; /* Maintain the aspect ratio */
 }
