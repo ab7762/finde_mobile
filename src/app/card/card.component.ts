@@ -10,4 +10,5 @@ registerElement("CardView", () => CardView);
 })
 export class CardComponent {
   @Input() eventData: any;
+  @Input() imageUrl: string;
 }

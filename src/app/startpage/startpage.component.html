@@ -1,12 +1,13 @@
 <StackLayout class="body">
-  <Label class="otsikko" text="FindE"></Label>
-  <button
-    class="register_button"
-    text="Register"
-    (tap)="routeRegister()"
-  ></button>
-  <FlexboxLayout class="flex"
-    ><label class="registered" text="Already registered?"></label
-    ><Label class="login" text="Login" (tap)="routeLogin()"></Label
-  ></FlexboxLayout>
+  <Image src="~/icons/valk_logo.png" class="logo"></Image>
+
+  <FlexboxLayout class="flex">
+    <button
+      class="register_button"
+      text="Register"
+      (tap)="routeRegister()"
+    ></button>
+    <label class="registered" text="Already have an account?"></label>
+    <label class="login" text="Log in here!" (tap)="routeLogin()"></label>
+  </FlexboxLayout>
 </StackLayout>

@@ -6,12 +6,13 @@ import { Component } from "@angular/core";
   styleUrls: ["./bottom-nav.component.css"],
 })
 export class BottomNavComponent {
-  active: number = 1;
+  active: number = 2;
   constructor() {
     console.log(this.active);
   }
 
   changeActive(index: number) {
     this.active = index;
+    console.log(this.active);
   }
 }

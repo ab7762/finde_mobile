@@ -1,5 +1,5 @@
-<ScrollView height="110%">
-  <StackLayout marginTop="5%" height="110%">
+<ScrollView class="scroll">
+  <StackLayout marginTop="5%" height="150%">
     <StackLayout
       width="80%"
       marginTop="5%"
@@ -94,11 +94,13 @@
       </FlexboxLayout>
       <Label
         *ngIf="salasanaError || emailError"
-        text="Password confirmation error"
+        text="Please check your information"
         class="error"
       ></Label>
 
       <Label class="registered" text="Already registered?"></Label>
       <Label class="registered_down" text="Login" (tap)="routeLogin()"></Label>
-    </stackLayout> </StackLayout
-></ScrollView>
+    </stackLayout>
+    ></StackLayout
+  >
+</ScrollView>

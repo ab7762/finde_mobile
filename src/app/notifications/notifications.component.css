@@ -5,8 +5,7 @@
   background-position: -400% 300%;
   background-color: #323439;
 }
-
-ScrollView {
+.scroll {
   height: 100%;
 }
 

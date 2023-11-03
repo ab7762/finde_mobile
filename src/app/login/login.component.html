@@ -1,12 +1,16 @@
-<StackLayout class="body">
-  <Image
-  src="~/images/finde-keltane.png"
-  class="logo"
-></Image>
-  <Label class="otsikko" text="Sign in"></Label>
-  <Image
-  src="~/images/finde-youraccount-signin.png"
-  class="accDetails"
-></Image>
-  <ns-login-forms></ns-login-forms>
+<ActivityIndicator [busy]="loading" *ngIf="loading"></ActivityIndicator>
+<StackLayout *ngIf="!loading" class="body">
+  <Image src="~/images/finde-keltane.png" class="logo"></Image>
+
+  <Image src="~/images/finde-youraccount-signin.png" class="accDetails"></Image>
+  <button (tap)="googleSignin()" class="googleButton">
+    <FormattedString>
+      <Span text="&#xf1a0;" class="fab" id="googleicon"></Span>
+      <Span class="teksti" text=" Login with Google"></Span>
+    </FormattedString>
+  </button>
+
+  <StackLayout>
+    <ns-login-forms></ns-login-forms>
+  </StackLayout>
 </StackLayout>

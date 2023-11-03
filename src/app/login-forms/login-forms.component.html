@@ -30,18 +30,18 @@
     secure="true"
     class="textfield_password"
   ></TextField>
+
   <FlexboxLayout marginTop="3%">
     <Button class="loginButton" text="Login" (tap)="submitLogin()"></Button>
   </FlexboxLayout>
-
-  <Label class="registered" text="Not registered yet?"></Label>
-  <Label
-    class="registered_down"
-    text="Register"
-    (tap)="routeRegister()"
-  ></Label>
-  <GoogleSignInButton
-    colorScheme="auto"
-    colorStyle="standard"
-  ></GoogleSignInButton>
+  <ScrollView class="scroll">
+    <StackLayout>
+      <Label class="registered" text="Not registered yet?"></Label>
+      <Label
+        class="registered_down"
+        text="Register"
+        (tap)="routeRegister()"
+      ></Label>
+    </StackLayout>
+  </ScrollView>
 </StackLayout>

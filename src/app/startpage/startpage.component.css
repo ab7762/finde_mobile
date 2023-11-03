@@ -1,8 +1,20 @@
 .body {
-  background-color: #64427f;
+  background-color: #323439;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-image: url("~/icons/kuvio_2_1.png"); /* ympyrät */
+  background-position: center; /* Ympyrä keskelle */
+  background-repeat: no-repeat; /* Prevent repeating the image */
+  background-size: 140% 90%; /* Customize the background image size */
 }
 
+.flex {
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
+  flex-direction: column; /* Stack items vertically */
+  height: 100%; /* Ensure the flexbox takes the full height of its parent container */
+  margin-top: 10%;
+  margin-bottom: 20%;
+}
 .otsikko {
   text-align: center;
   margin-top: 3%;
@@ -11,30 +23,34 @@
   font-weight: bold;
 }
 .register_button {
-  width: 70%;
+  width: 40%;
   border-radius: 20;
   background-color: black;
-  color: white;
+  color: #e2d2b2;
   font-weight: bold;
-  margin-top: 10%;
+  margin-top: 1rem; /* Adjust vertical margin as needed */
+  margin-bottom: 20%; /* Väliä alempaan teksteihin */
+  font-size: 18;
 }
 
 .registered {
-  margin-top: 0;
-  margin-right: 7%;
   font-size: 15;
   font-weight: bold;
-  color: white;
+  color: #ddd2b2;
+  margin-top: 1rem;
 }
 
 .login {
-  margin-left: 10%;
-  margin-top: 0;
-  font-size: 15;
+  font-size: 13;
   font-weight: bold;
-  color: #ffcb00;
+  color: #ddd2b2;
+  margin-top: 1rem; /* Adjust vertical margin as needed */
+  text-decoration: underline;
 }
 
-.flex {
-  justify-content: center;
+.logo {
+  width: 600px; /* Koko */
+  margin-top: 50px;
+  height: auto;
+  margin-top: 30%;
 }

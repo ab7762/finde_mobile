@@ -1,7 +1,6 @@
 .register-container {
   display: flex;
   flex-direction: column;
-
 }
 
 .textfield_sapo {
@@ -104,4 +103,8 @@
 .boxerror {
   border-color: red;
   border-width: 2;
+}
+
+.scroll {
+  height: 150%;
 }

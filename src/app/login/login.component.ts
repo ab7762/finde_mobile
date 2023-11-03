@@ -7,6 +7,7 @@ import { Router } from "@angular/router";
 import { AuthState } from "../auth.reducer";
 import { Observable, of } from "rxjs";
 import { catchError } from "rxjs/operators";
+
 import {
   GoogleSignInOptions,
   GoogleSignInType,
@@ -25,6 +26,8 @@ import { login } from "../auth.actions";
   styleUrls: ["./login.component.css"],
 })
 export class LoginComponent {
+  loading: boolean = false;
+
   constructor(
     private http: HttpClient,
     private store: Store<{ appState: AuthState }>,
@@ -39,6 +42,7 @@ export class LoginComponent {
     console.log("Google here i Come");
   }
   googleSignin() {
+    this.loading = true;
     const signInOptions: GoogleSignInOptions = {
       SignInType: GoogleSignInType.Local,
       ForceAccountSelection: true,
@@ -68,9 +72,11 @@ export class LoginComponent {
 
               alert("Login succesfull! Welcome");
               this.router.navigate(["bottom-nav"]);
+              this.loading = false;
               return true; // Palauta true, kun token on saatavilla
             } else {
               console.log("Pieleen meni");
+              this.loading = false;
               return false;
             } // Palauta false, jos tokenia ei löydy
           })
