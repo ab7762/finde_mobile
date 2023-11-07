@@ -28,9 +28,9 @@
     "@nstudio/nativescript-cardview": "^2.0.2",
     "@nstudio/nativescript-checkbox": "^2.0.5",
     "bootstrap-icons": "^1.10.5",
+    "date-fns": "^2.30.0",
     "nativescript-secure-storage": "^2.6.2",
-    "rxjs": "~7.6.0",
-    "zone.js": "~0.13.0"
+    "rxjs": "~7.6.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~15.2.0",

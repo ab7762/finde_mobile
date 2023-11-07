@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+import { format } from "date-fns";
 import { registerElement } from "@nativescript/angular";
 import { CardView } from "@nstudio/nativescript-cardview";
 registerElement("CardView", () => CardView);
@@ -9,6 +10,11 @@ registerElement("CardView", () => CardView);
   styleUrls: ["./card.component.css"],
 })
 export class CardComponent {
+  // Otetaan vastaan tietoja
   @Input() eventData: any;
-  @Input() imageUrl: string;
+  // format-kirjastolla käännetään päivämäärä suomenkieliseksi
+  dateToFinnish(date: string) {
+    let time = new Date(date);
+    return format(time, "dd.MM.yyyy");
+  }
 }

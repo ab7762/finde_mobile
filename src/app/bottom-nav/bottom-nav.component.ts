@@ -6,11 +6,10 @@ import { Component } from "@angular/core";
   styleUrls: ["./bottom-nav.component.css"],
 })
 export class BottomNavComponent {
-  active: number = 2;
-  constructor() {
-    console.log(this.active);
-  }
+  active: number = 2; //Käynnistyessä aktiivinen bottom-navin osa
+  constructor() {}
 
+  // Vaihdetaan aktiivinen näytettävä osa bottom-navista
   changeActive(index: number) {
     this.active = index;
     console.log(this.active);

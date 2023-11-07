@@ -27,13 +27,14 @@ export class RegisterFormsComponent {
   salasanaError: boolean = false;
   emailError: boolean = false;
   isChecked: boolean = false;
-
+  // Vaihdetaan checkbox-arvoa.
   changeChecked(args: any) {
     const checkBox = args.object;
     this.isChecked = checkBox.checked;
     console.log(this.isChecked);
   }
-
+  // Rekisteröitymis-funktio. Eri tietojen validoinnin tarkistus.
+  // Jos validointi menee läpi, suoritetaan servicen funktio.
   submitSignUp() {
     this.salasanaError = false;
     this.emailError = false;
@@ -57,6 +58,7 @@ export class RegisterFormsComponent {
         this.data = response;
       });
   }
+  // Siirrytään login-sivulle
   routeLogin() {
     this.router.navigate(["login"]);
   }

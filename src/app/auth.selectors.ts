@@ -1,3 +1,5 @@
+//Selectorit, joilla voidaan hakea storen tietoja komponenteille.
+
 import { createSelector, createFeatureSelector } from "@ngrx/store";
 import { AuthState } from "./auth.reducer";
 

@@ -1,4 +1,7 @@
-<ActivityIndicator [busy]="loading" *ngIf="loading"></ActivityIndicator>
+<!-- Login-komponentti sisältää google-kirjautumisen sekä lomakkeet sisäänkirjautumiseen.
+Silloin kun suoritetaan funktioita, näytetään pelkästään latausikoni. -->
+
+<ns-loading-page [busy]="loading" *ngIf="loading"></ns-loading-page>
 <StackLayout *ngIf="!loading" class="body">
   <Image src="~/images/finde-keltane.png" class="logo"></Image>
 

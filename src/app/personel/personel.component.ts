@@ -6,7 +6,5 @@ import { Component } from "@angular/core";
   styleUrls: ["./personel.component.css"],
 })
 export class PersonelComponent {
-  constructor() {
-    console.log("personel avattu");
-  }
+  constructor() {}
 }

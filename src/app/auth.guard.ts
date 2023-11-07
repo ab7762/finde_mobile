@@ -28,8 +28,7 @@ class PermissionsService {
     if (this.tila === true) {
       return true;
     } else {
-      // Käyttäjä ei ole kirjautunut sisään, ohjataan kirjautumissivulle
-      return false; // Luo UrlTree ohjausta varten
+      return false;
     }
   }
 }

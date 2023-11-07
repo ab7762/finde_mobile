@@ -1,6 +1,9 @@
-import { Component } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { registerElement } from "@nativescript/angular";
 import { EventService } from "../event.service";
+import { interval, Subscription } from "rxjs";
+
+import { Router } from "@angular/router";
 registerElement(
   "Mapbox",
   () => require("@nativescript-community/ui-mapbox").MapboxView
@@ -11,39 +14,58 @@ registerElement(
   templateUrl: "./map.component.html",
   styleUrls: ["./map.component.css"],
 })
-export class MapComponent {
+export class MapComponent implements OnInit, OnDestroy {
   events: any;
-  constructor(private eventService: EventService) {
+  mapUpdateInterval = 5000; // 1 minuutin välein (ms)
+  mapUpdateSubscription: Subscription;
+
+  constructor(private eventService: EventService, private router: Router) {}
+
+  ngOnInit() {
+    this.loadEventsAndRefreshMap(); // Alusta komponentti ja lisää markkerit kartalle
+
+    // Aseta aikavälin mukainen päivitys
+    this.mapUpdateSubscription = interval(this.mapUpdateInterval).subscribe(
+      () => {
+        this.reloadComponent();
+      }
+    );
+  }
+  reloadComponent() {
+    this.router.navigate(["bottom-nav"]);
+  }
+  ngOnDestroy() {
+    if (this.mapUpdateSubscription) {
+      this.mapUpdateSubscription.unsubscribe();
+    }
+  }
+
+  loadEventsAndRefreshMap() {
     this.eventService.getEvents().subscribe((response) => {
       this.events = response;
-      console.log(this.events);
+      console.log("Tiedot päivitetty kartalle:", this.events);
+      // Kutsu onMapReady päivitettävien tietojen kanssa
     });
   }
+
   onMapReady(args): void {
     console.log("map is ready");
-    args.map.addMarkers([
-      {
-        lat: this.events[0].sijainti[0].long,
-        lng: this.events[0].sijainti[0].lat,
-        title: this.events[0].nimi,
-        subtitle: this.events[0].kuvaus,
+    const markers = [];
 
-        selected: false, // makes the callout show immediately when the marker is added (note: only 1 marker can be selected at a time)
-        onCalloutTap: function () {
-          console.log("'Nice location' marker callout tapped");
+    this.events.forEach((event) => {
+      markers.push({
+        lat: event.sijainti[0].long,
+        lng: event.sijainti[0].lat,
+        title: event.nimi,
+        subtitle: event.kuvaus,
+        selected: false,
+        onCalloutTap: () => {
+          console.log("Marker callout tapped");
         },
-      },
-      {
-        lat: 62.24149,
-        lng: 25.7315,
-        title: "Konsta hakkaa konsolia",
-        subtitle: "Ea sports, in the game",
-        iconPath: "/icons/game-controller.png",
-        selected: false, // makes the callout show immediately when the marker is added (note: only 1 marker can be selected at a time)
-        onCalloutTap: function () {
-          console.log("'Nice location' marker callout tapped");
-        },
-      },
-    ]);
+      });
+    });
+
+    // Lisää markkerit kartalle
+    args.map.addMarkers(markers);
   }
 }

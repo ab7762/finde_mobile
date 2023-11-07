@@ -1,0 +1,41 @@
+.body {
+  background-color: #323439;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-image: url("~/icons/kuvio_2_1.png"); /* ympyrät */
+  background-position: center; /* Ympyrä keskelle */
+  background-repeat: no-repeat; /* Prevent repeating the image */
+  background-size: 140% 90%; /* Customize the background image size */
+}
+
+.logo {
+  width: 600px; /* Koko */
+  margin-top: 50px;
+  height: auto;
+  margin-top: 30%;
+}
+
+.heilahtava-kuva {
+  animation-name: heilahdus;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+  transform-origin: center;
+}
+
+@keyframes heilahdus {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}

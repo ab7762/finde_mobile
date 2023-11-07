@@ -1,3 +1,5 @@
+<!-- Bottomm-nav komponentti. Komponentissa on kolme sivua, joiden välillä navigoidaan.  -->
+
 <MDBottomNavigation [selectedIndex]="active">
   <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
   <MDTabStrip>
@@ -24,6 +26,8 @@
   </MDTabStrip>
 
   <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
+
+  <!-- Tänne laitetaan komponentin eri sivujen sisältö. Jokaisessa oma komponentti. -->
   <MDTabContentItem>
     <GridLayout>
       <ns-notifications></ns-notifications>

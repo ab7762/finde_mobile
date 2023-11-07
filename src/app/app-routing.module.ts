@@ -1,3 +1,5 @@
+//Sisältää reitit. Joitain reittejä on suojattu reittivahdilla. 
+
 import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "@nativescript/angular";

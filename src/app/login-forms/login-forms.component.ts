@@ -28,13 +28,13 @@ export class LoginFormsComponent {
     });
     this.loggedIn$ = this.store.select((state) => state.loggedIn);
   }
-
+  // Sisäänkirjautuminen lomakkeiden kautta. Käytetään servicen logIn-metodia.
   submitLogin() {
     const email = this.myForm.get("email").value;
     const password = this.myForm.get("password").value;
     this.authService.logIn(email, password).subscribe();
   }
-
+  // Funktio, jolla siirrytään register-sivulle.
   routeRegister() {
     this.router.navigate(["register"]);
   }

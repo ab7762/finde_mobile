@@ -1,7 +1,10 @@
+<!-- CardView komponentti notifications-komponentin tapahtumien näyttämiseen. Tälle komponentille välitetään
+tietoja notifications-komponentille haetuista tiedoista. -->
+
 <CardView class="cardStyle" margin="20" elevation="40" radius="1">
   <FlexboxLayout>
-    <Image width="30%" src="~/icons/harrastukset.png" class="img"></Image>
-    <StackLayout flexGrow="1">
+    <Image width="30%" [src]="eventData.kuvaUrl" class="img"></Image>
+    <StackLayout class="content" flexGrow="1">
       <FlexboxLayout justifyContent="space-between">
         <label class="nimi" [text]="eventData.nimi" color="white"></label>
         <label class="x_ikoni" text="X" horizontalAlignment="right"></label>
@@ -13,7 +16,10 @@
           width="10"
           color="white"
         ></Image>
-        <label class="paivamaara" [text]="eventData.paivamaara"></label>
+        <label
+          class="paivamaara"
+          [text]="dateToFinnish(eventData.paivamaara)"
+        ></label>
       </FlexboxLayout>
 
       <FlexboxLayout>
@@ -40,7 +46,7 @@
           <label
             class="tickets"
             horizontalAlignment="left"
-            text="www.ticketets.com"
+            [text]="eventData.lipunHinta"
           ></label>
         </FlexboxLayout>
         <Image

@@ -38,11 +38,10 @@ export class LoginComponent {
   token: any;
   private secureStorage: SecureStorage;
   private jwtHelp = new JwtHelperService();
-  onTap() {
-    console.log("Google here i Come");
-  }
-  googleSignin() {
-    this.loading = true;
+
+  // Google-kirjautumisen funktio. Kun googlelta saadaan tiedot onnistuneesti, lähetetään googlen tiedot backend-
+  // sovellukseen, joka palauttaa jwt-tokenin. Muutetaan myös tila, jotta voidaan siirtyä suojatulle sivulle.
+  async googleSignin() {
     const signInOptions: GoogleSignInOptions = {
       SignInType: GoogleSignInType.Local,
       ForceAccountSelection: true,
@@ -55,8 +54,11 @@ export class LoginComponent {
     // Please note that result can also be a failure result.
     // The actual result is in the object.
     startGoogleSignIn(signInOptions).then((result) => {
+      this.loading = true;
       console.log("Google sign in result: ", result);
-
+      if (result.ResultType == 0) {
+        this.loading = false;
+      }
       return this.http
         .post("https://backendwithlogin-1-u7980985.deta.app/users/glogin", {
           gtoken: result.IdToken,
@@ -69,10 +71,10 @@ export class LoginComponent {
               this.token = token;
               console.log(token);
               this.store.dispatch(login());
-
-              alert("Login succesfull! Welcome");
-              this.router.navigate(["bottom-nav"]);
+              this.wait(5000);
               this.loading = false;
+              this.router.navigate(["bottom-nav"]);
+
               return true; // Palauta true, kun token on saatavilla
             } else {
               console.log("Pieleen meni");
@@ -84,6 +86,12 @@ export class LoginComponent {
         .subscribe((res) => {
           console.log(res);
         });
+    });
+  }
+
+  async wait(ms: number) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
     });
   }
 }

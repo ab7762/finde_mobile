@@ -7,6 +7,9 @@
   height: 25%;
 }
 
+.content {
+  margin-left: 2%;
+}
 .nimi {
   color: #f8efd6;
 }

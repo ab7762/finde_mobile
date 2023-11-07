@@ -1,3 +1,5 @@
+// Tässä määritellään toimintojen tapahtumat sekä alustetaan tila kirjautumiseen liittyen.
+
 import { createReducer, on } from "@ngrx/store";
 import * as AuthActions from "./auth.actions";
 
