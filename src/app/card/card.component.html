@@ -1,9 +1,22 @@
 <!-- CardView komponentti notifications-komponentin tapahtumien näyttämiseen. Tälle komponentille välitetään
 tietoja notifications-komponentille haetuista tiedoista. -->
 
-<CardView class="cardStyle" margin="20" elevation="40" radius="1">
+<CardView
+  [nsRouterLink]="['/event/', eventData._id]"
+  class="cardStyle"
+  margin="20"
+  elevation="40"
+  radius="1"
+  width="90%"
+  height="40%"
+>
   <FlexboxLayout>
-    <Image width="30%" [src]="eventData.kuvaUrl" class="img"></Image>
+    <Image
+      width="20%"
+      [src]="eventData.kuvaUrl"
+      margin="10 10 10 10"
+      class="img"
+    ></Image>
     <StackLayout class="content" flexGrow="1">
       <FlexboxLayout justifyContent="space-between">
         <label class="nimi" [text]="eventData.nimi" color="white"></label>
@@ -32,7 +45,21 @@ tietoja notifications-komponentille haetuista tiedoista. -->
         <label
           class="henry"
           horizontalAlignment="left"
-          [text]="eventData.sijainti[0].paikkakunta"
+          [text]="
+            eventData.sijainti[0].paikkakunta +
+            ' ' +
+            '(' +
+            this.locationService
+              .getDistance(
+                this.eventData.sijainti[0].long,
+                this.eventData.sijainti[0].lat,
+                this.locationService.latitude,
+
+                this.locationService.longitude
+              )
+              .toFixed(1) +
+            'km)'
+          "
         ></label>
       </FlexboxLayout>
       <FlexboxLayout justifyContent="space-between">
@@ -53,7 +80,7 @@ tietoja notifications-komponentille haetuista tiedoista. -->
           src="font://&#xf004;"
           id="sydan"
           class="fas"
-          width="10"
+          width="15"
           color="white"
           horizontalAlignment="right"
         ></Image>

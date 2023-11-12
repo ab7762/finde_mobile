@@ -1,4 +1,4 @@
-//Sisältää reitit. Joitain reittejä on suojattu reittivahdilla. 
+//Sisältää reitit. Joitain reittejä on suojattu reittivahdilla.
 
 import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
@@ -15,6 +15,7 @@ import { AuthGuard } from "./auth.guard";
 import { MapComponent } from "./map/map.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { PersonelComponent } from "./personel/personel.component";
+import { EventComponent } from "./event/event.component";
 const routes: Routes = [
   { path: "", redirectTo: "start", pathMatch: "full" },
   { path: "login", component: LoginComponent },
@@ -33,6 +34,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: "personel", component: PersonelComponent, canActivate: [AuthGuard] },
+  { path: "event/:id", component: EventComponent },
 ];
 
 @NgModule({

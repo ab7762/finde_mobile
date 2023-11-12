@@ -1,0 +1,11 @@
+.body {
+  background-image: url("~/icons/kuvio_2_1.png");
+  background-size: 90% 80%;
+  background-repeat: no-repeat;
+  background-position: 0% 250%;
+  background-color: #494b50;
+}
+
+.t-36 {
+  font-size: 36;
+}

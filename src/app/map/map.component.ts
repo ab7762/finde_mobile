@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { registerElement } from "@nativescript/angular";
 import { EventService } from "../event.service";
 import { interval, Subscription } from "rxjs";
+import { LocationService } from "../location.service";
 
 import { Router } from "@angular/router";
 registerElement(
@@ -19,21 +20,18 @@ export class MapComponent implements OnInit, OnDestroy {
   mapUpdateInterval = 5000; // 1 minuutin välein (ms)
   mapUpdateSubscription: Subscription;
 
-  constructor(private eventService: EventService, private router: Router) {}
+  constructor(
+    private eventService: EventService,
+    private router: Router,
+    public locationService: LocationService
+  ) {}
 
   ngOnInit() {
     this.loadEventsAndRefreshMap(); // Alusta komponentti ja lisää markkerit kartalle
 
     // Aseta aikavälin mukainen päivitys
-    this.mapUpdateSubscription = interval(this.mapUpdateInterval).subscribe(
-      () => {
-        this.reloadComponent();
-      }
-    );
   }
-  reloadComponent() {
-    this.router.navigate(["bottom-nav"]);
-  }
+
   ngOnDestroy() {
     if (this.mapUpdateSubscription) {
       this.mapUpdateSubscription.unsubscribe();
@@ -63,6 +61,11 @@ export class MapComponent implements OnInit, OnDestroy {
           console.log("Marker callout tapped");
         },
       });
+    });
+    markers.push({
+      lat: this.locationService.latitude,
+      lng: this.locationService.longitude,
+      iconPath: "~/icons/liikunta2.png",
     });
 
     // Lisää markkerit kartalle

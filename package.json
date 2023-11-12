@@ -19,6 +19,7 @@
     "@nativescript-community/ui-material-bottom-navigation": "^7.1.4",
     "@nativescript/angular": "^15.0.0",
     "@nativescript/core": "~8.5.0",
+    "@nativescript/geolocation": "^8.3.1",
     "@nativescript/secure-storage": "^3.0.3",
     "@nativescript/theme": "~3.0.2",
     "@ngrx/effects": "^15.2.0",

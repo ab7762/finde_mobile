@@ -22,6 +22,7 @@ import { NotificationsComponent } from "./notifications/notifications.component"
 import { CardComponent } from "./card/card.component";
 import { PersonelComponent } from "./personel/personel.component";
 import { LoadingPageComponent } from "./loading-page/loading-page.component";
+import { EventComponent } from './event/event.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -52,6 +53,7 @@ import { LoadingPageComponent } from "./loading-page/loading-page.component";
     CardComponent,
     PersonelComponent,
     LoadingPageComponent,
+    EventComponent,
   ],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],
