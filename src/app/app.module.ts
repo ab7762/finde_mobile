@@ -22,7 +22,14 @@ import { NotificationsComponent } from "./notifications/notifications.component"
 import { CardComponent } from "./card/card.component";
 import { PersonelComponent } from "./personel/personel.component";
 import { LoadingPageComponent } from "./loading-page/loading-page.component";
-import { EventComponent } from './event/event.component';
+import { EventComponent } from "./event/event.component";
+import {
+  ExtendedShowModalOptions,
+  ModalStack,
+  overrideModalViewMethod,
+} from "nativescript-windowed-modal";
+import { ModalModule } from "./modal/modal.module";
+import { filterReducer } from "./filter.reducer";
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -33,10 +40,10 @@ import { EventComponent } from './event/event.component';
     HttpClientModule,
     FormsModule,
     NativeScriptFormsModule,
-
+    ModalModule,
     ReactiveFormsModule,
     CheckBoxModule,
-    StoreModule.forRoot({ appState: authReducer }),
+    StoreModule.forRoot({ appState: authReducer, filterState: filterReducer }),
   ],
   declarations: [
     AppComponent,

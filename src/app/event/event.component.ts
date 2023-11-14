@@ -15,7 +15,8 @@ export class EventComponent {
     private eventService: EventService,
     private location: Location
   ) {}
-
+  // Haetaan reitin parametristä oikea id ja filteröidään tapahtumista oikea id.
+  // Sitten tallennetaan muuttujaan oikeat tiedot, joita voidaan näyttää komponentissa.
   ngOnInit(): void {
     const id = String(this.route.snapshot.paramMap.get("id"));
     console.log(id);
@@ -26,12 +27,12 @@ export class EventComponent {
       console.log("Tässä event", this.event);
     });
   }
-
+  // Muutetaan päivämäärä eurooppalaiseen / suomalaiseen muotoon.
   dateToFinnish(date: string) {
     let time = new Date(date);
     return format(time, "dd.MM.yyyy");
   }
-
+  // Navigoidaan takaisin edelliseen näkymään
   goBack(): void {
     this.location.back();
   }

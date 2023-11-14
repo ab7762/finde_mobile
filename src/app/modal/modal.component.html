@@ -1,0 +1,10 @@
+<ModalStack dismissEnabled="true" class="modal-container">
+  <StackLayout class="modal">
+    <Label
+      *ngIf="context && context.text"
+      text="{{ context.text }}"
+      class="text-center"
+      textWrap="true"
+    ></Label>
+  </StackLayout>
+</ModalStack>

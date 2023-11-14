@@ -7,21 +7,42 @@ minkä genren tapahtumia näytetään. -->
   <StackLayout class="icongrid">
     <FlexboxLayout class="iconrow">
       <StackLayout class="icon_text">
-        <Image class="icon" src="~/icons/musiikki2.png"></Image>
+        <Image
+          (tap)="toggleMusic()"
+          class="icon"
+          src="~/icons/musiikki2.png"
+          [opacity]="music ? 1 : 0.2"
+        ></Image>
+
         <Label class="icontext" text="Music"></Label>
       </StackLayout>
       <StackLayout class="icon_text">
-        <Image class="icon" src="~/icons/perhe2.png"></Image>
+        <Image
+          (tap)="toggleFamily()"
+          class="icon"
+          src="~/icons/perhe2.png"
+          [opacity]="family ? 1 : 0.2"
+        ></Image>
         <Label class="icontext" text="Family"></Label>
       </StackLayout>
     </FlexboxLayout>
     <FlexboxLayout class="iconrow">
       <StackLayout class="icon_text">
-        <Image class="icon" src="~/icons/ruokajuoma2.png"></Image>
+        <Image
+          (tap)="toggleFood()"
+          class="icon"
+          src="~/icons/ruokajuoma2.png"
+          [opacity]="food ? 1 : 0.2"
+        ></Image>
         <Label fontSize="12" class="icontext" text="Food & Drink"></Label>
       </StackLayout>
       <StackLayout class="icon_text">
-        <Image class="icon" src="~/icons/liikunta2.png"></Image>
+        <Image
+          (tap)="toggleSports()"
+          class="icon"
+          src="~/icons/liikunta2.png"
+          [opacity]="sports ? 1 : 0.2"
+        ></Image>
         <Label class="icontext" text="Sports"></Label>
       </StackLayout>
     </FlexboxLayout>

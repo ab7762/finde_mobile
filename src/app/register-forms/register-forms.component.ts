@@ -1,18 +1,29 @@
-import { Component, ViewChild, NgModule } from "@angular/core";
+import {
+  Component,
+  ViewChild,
+  NgModule,
+  ViewContainerRef,
+} from "@angular/core";
 import { TNSCheckBoxModule } from "@nstudio/nativescript-checkbox/angular";
 import { AuthService } from "../auth.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { ModalDialogService, ModalDialogOptions } from "@nativescript/angular";
+import { ModalComponent } from "../modal/modal.component";
+import { ExtendedShowModalOptions } from "nativescript-windowed-modal";
 @Component({
   selector: "ns-register-forms",
   templateUrl: "./register-forms.component.html",
   styleUrls: ["./register-forms.component.css"],
 })
 export class RegisterFormsComponent {
+  text2: string =
+    "Rekisteröityminen epäonnistui. Tarkista internet-yhteys ja syötetyt tiedot.";
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private modalService: ModalDialogService
   ) {
     this.myForm = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
@@ -46,7 +57,9 @@ export class RegisterFormsComponent {
     if (password !== password2) {
       console.log("Password confirmation errror");
       this.salasanaError = true;
+
       console.log(this.salasanaError);
+      return false;
     } else if (email.indexOf("@") == -1) {
       console.log("ei ole merkkiä");
       this.emailError = true;
@@ -55,7 +68,10 @@ export class RegisterFormsComponent {
     this.authService
       .signUp(firstname, lastname, email, password)
       .subscribe((response) => {
-        this.data = response;
+        if (response) {
+          // Rekisteröityminen onnistui, avaa moduuli
+        } else {
+        }
       });
   }
   // Siirrytään login-sivulle

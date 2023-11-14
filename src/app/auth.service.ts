@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, ViewContainerRef } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { map, filter } from "rxjs/operators";
@@ -10,6 +10,9 @@ import { AuthState } from "./auth.reducer";
 import { login, logout } from "./auth.actions";
 import { Router } from "@angular/router";
 import { selectIsLoggedIn } from "./auth.selectors";
+import { ModalDialogService, ModalDialogOptions } from "@nativescript/angular";
+import { ModalComponent } from "./modal/modal.component";
+import { ExtendedShowModalOptions } from "nativescript-windowed-modal";
 
 @Injectable({
   providedIn: "root",
@@ -17,14 +20,17 @@ import { selectIsLoggedIn } from "./auth.selectors";
 export class AuthService {
   private secureStorage: SecureStorage;
   url: string = "https://backendwithlogin-1-u7980985.deta.app/users/login";
-  url2: string = "https://backendwithlogin-1-u7980985.deta.app/users/register";
+  url2: string = "https://d17e239b9ewh66.cloudfront.net/users/register";
+  text1: string =
+    "Vahvistusviesti lähetetty sähköpostiin. Klikkaa linkkiä niin voit kirjautua.";
   isLoggedIn: boolean;
   public token: string;
   private jwtHelp = new JwtHelperService();
   constructor(
     private http: HttpClient,
     private store: Store<{ appState: AuthState }>,
-    private router: Router
+    private router: Router,
+    private modalService: ModalDialogService
   ) {
     this.secureStorage = new SecureStorage();
     this.store.select(selectIsLoggedIn).subscribe((loggedIn: boolean) => {
@@ -90,20 +96,25 @@ export class AuthService {
       .pipe(
         map((res: any) => {
           console.log(res);
-          const token = res["token"];
-          if (token) {
-            this.token = token;
-            console.log(token);
-            return true; // Palauta true, kun token on saatavilla
-          } else {
-            console.log(res.json.message);
-            return false;
-          } // Palauta false, jos tokenia ei löydy
+          this.openModal1(this.text1);
+          this.router.navigate(["login"]);
+          return true; // Palauta true, kun rekisteröinti onnistui
         }),
         catchError((error) => {
-          console.error("Virhe kirjautumisessa:", error.error.message);
+          this.openModal1(error.error.message);
+          console.log(error);
           return of(false); // Palauta false virhetilanteessa
         })
       );
+  }
+  async openModal1(text) {
+    const options: ModalDialogOptions = {
+      context: { text },
+      fullscreen: true,
+    };
+
+    const result = await this.modalService.showModal(ModalComponent, options);
+
+    console.log("Modal response:", result);
   }
 }
