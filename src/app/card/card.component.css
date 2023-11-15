@@ -1,8 +1,25 @@
 .cardStyle {
   background-color: #494b50;
-  height: 25%;
+  max-height: 15vh;
+  overflow: hidden;
 }
 
+.image {
+  width: 20%;
+  height: 0;
+  margin: 5vh;
+  padding-bottom: 10%;
+  padding-top: 10%;
+  position: relative;
+}
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 .content {
   margin-left: 2%;
 }

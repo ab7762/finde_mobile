@@ -11,12 +11,9 @@ tietoja notifications-komponentille haetuista tiedoista. -->
   height="40%"
 >
   <FlexboxLayout>
-    <Image
-      width="20%"
-      [src]="eventData.kuvaUrl"
-      margin="10 10 10 10"
-      class="img"
-    ></Image>
+    <StackLayout class="image">
+      <Image class="img" [src]="eventData.kuvaUrl"></Image
+    ></StackLayout>
     <StackLayout class="content" flexGrow="1">
       <FlexboxLayout justifyContent="space-between">
         <label class="nimi" [text]="eventData.nimi" color="white"></label>
