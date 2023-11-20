@@ -11,13 +11,18 @@
 }
 
 .logo {
-  width: 40%;
+  width: 50%;
+  flex: 1;
+  margin-top: 2%;
+}
+.menu {
+  width: 7%;
   margin-top: 2%;
 }
 
 .text {
   text-align: center;
-  font-size: 15;
+  font-size: 18;
   color: #ddd1b2;
 }
 

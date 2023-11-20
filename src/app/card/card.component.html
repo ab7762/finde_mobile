@@ -5,8 +5,8 @@ tietoja notifications-komponentille haetuista tiedoista. -->
   [nsRouterLink]="['/event/', eventData._id]"
   class="cardStyle"
   margin="20"
-  elevation="40"
-  radius="1"
+  elevation="60"
+  radius="10"
   width="90%"
   height="40%"
 >
@@ -26,10 +26,7 @@ tietoja notifications-komponentille haetuista tiedoista. -->
           width="10"
           color="white"
         ></Image>
-        <label
-          class="paivamaara"
-          [text]="dateToFinnish(eventData.paivamaara)"
-        ></label>
+        <label class="paivamaara" [text]="eventData.aloituspvm"></label>
       </FlexboxLayout>
 
       <FlexboxLayout>

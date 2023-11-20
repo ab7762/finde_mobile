@@ -6,19 +6,22 @@
 
 .image {
   width: 20%;
-  height: 0;
-  margin: 5vh;
-  padding-bottom: 10%;
-  padding-top: 10%;
+  height: 20vw;
+  margin: 5vw;
+
+  overflow: hidden;
   position: relative;
 }
 .img {
-  width: 100%;
+  width: 100%; /* Anna kuvan täyttää koko leveys StackLayoutin sisällä */
   height: 100%;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
+  object-fit: stretch;
+  margin: 0;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  padding-bottom: 10vh;
+  padding-top: 10vh;
+  border-radius: 15;
 }
 .content {
   margin-left: 2%;

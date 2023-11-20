@@ -1,8 +1,21 @@
 .t-36 {
-  font-size: 36;
+  font-size: 36px;
 }
 
-.active {
-  color: red;
+.active1 {
   font-weight: bold;
+  color: white;
+}
+
+.active2 {
+  font-weight: bold;
+  color: white;
+}
+.active3 {
+  font-weight: bold;
+  color: white;
+}
+
+.special {
+  color: rgba(233, 236, 239, 0.381);
 }

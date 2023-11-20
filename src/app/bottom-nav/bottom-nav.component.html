@@ -2,26 +2,21 @@
 
 <MDBottomNavigation [selectedIndex]="active">
   <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
-  <MDTabStrip>
-    <MDTabStripItem (tap)="changeActive(1)" [ngClass]="{ active: active == 1 }">
-      <Label text="Events"></Label>
-      <Image src="font://&#xf0f3;" class="fas"></Image>
+  <MDTabStrip backgroundColor="#000000">
+    <MDTabStripItem class="special" (tap)="changeActive(1)">
+      <Image src="~/icons/kello.png" class="fas"></Image>
+      <Label [class.active1]="active === 1" text="Events"> </Label>
     </MDTabStripItem>
-    <MDTabStripItem
-      (tap)="changeActive(3)"
-      [ngClass]="{ active: active == 3 }"
-      class="special"
-    >
-      <Label text="Locations"></Label>
-      <Image src="font://&#xf3c5;" class="fas"></Image>
+    <MDTabStripItem (tap)="changeActive(3)" class="special">
+      <Label
+        [ngClass]="{ active3: this.active === 3 }"
+        text="Locations"
+      ></Label>
+      <Image src="~/icons/map.png" class="fas"></Image>
     </MDTabStripItem>
-    <MDTabStripItem
-      (tap)="changeActive(2)"
-      [ngClass]="{ active: active == 2 }"
-      class="special"
-    >
-      <Label text="Person"></Label>
-      <Image src="font://&#xf183;" class="fas"></Image>
+    <MDTabStripItem (tap)="changeActive(2)" class="special">
+      <Label [ngClass]="{ active2: this.active === 2 }" text="Person"></Label>
+      <Image src="~/icons/kategoriaalapalkki.png" class="fas"></Image>
     </MDTabStripItem>
   </MDTabStrip>
 
