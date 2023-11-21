@@ -17,7 +17,7 @@ import { NotificationsComponent } from "./notifications/notifications.component"
 import { PersonelComponent } from "./personel/personel.component";
 import { EventComponent } from "./event/event.component";
 const routes: Routes = [
-  { path: "", redirectTo: "start", pathMatch: "full" },
+  { path: "", redirectTo: "login", pathMatch: "full" },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "start", component: StartpageComponent },
