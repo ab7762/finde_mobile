@@ -3,12 +3,10 @@ Jokaiselle tapahtumalle välitetään tiedot card-komponentille.  -->
 
 <StackLayout class="body">
   <Image class="logo" src="~/icons/valk_logo.png"></Image>
-  <Label class="ilmoitukset" text="Notifications"></Label>
-  <Label
-    class="viiva"
-    text="-----------------------------------------------------------"
-  ></Label>
-  <Label class="events" text="Events for you:"></Label>
+  <Image
+    src="~/images/finde-notifications.png"
+    class="notificationsBanner"
+  ></Image>
 
   <ActivityIndicator [busy]="isLoading"></ActivityIndicator>
   <ScrollView class="scroll">
