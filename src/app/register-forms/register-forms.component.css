@@ -81,6 +81,9 @@
   justify-content: center;
   margin-left: 215px; /* Keskittämistä */
 }
+.signupbutton:active {
+  background-color: whitesmoke;
+}
 
 .registered {
   font-size: 15;

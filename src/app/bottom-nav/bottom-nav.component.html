@@ -1,21 +1,18 @@
 <!-- Bottomm-nav komponentti. Komponentissa on kolme sivua, joiden välillä navigoidaan.  -->
 
-<MDBottomNavigation [selectedIndex]="active">
+<MDBottomNavigation [selectedIndex]="this.active">
   <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
   <MDTabStrip backgroundColor="#000000">
-    <MDTabStripItem class="special" (tap)="changeActive(1)">
+    <MDTabStripItem class="special" (tap)="changeActive(0)">
       <Image src="~/icons/kello.png" class="fas"></Image>
-      <Label [class.active1]="active === 1" text="Events"> </Label>
+      <Label [class.active1]="active == 0" text="Events"> </Label>
     </MDTabStripItem>
-    <MDTabStripItem (tap)="changeActive(3)" class="special">
-      <Label
-        [ngClass]="{ active3: this.active === 3 }"
-        text="Locations"
-      ></Label>
+    <MDTabStripItem (tap)="navigateToMap()" class="special">
+      <Label [ngClass]="{ active3: this.active == 3 }" text="Locations"></Label>
       <Image src="~/icons/map.png" class="fas"></Image>
     </MDTabStripItem>
     <MDTabStripItem (tap)="changeActive(2)" class="special">
-      <Label [ngClass]="{ active2: this.active === 2 }" text="Person"></Label>
+      <Label [ngClass]="{ active2: this.active == 2 }" text="Person"></Label>
       <Image src="~/icons/kategoriaalapalkki.png" class="fas"></Image>
     </MDTabStripItem>
   </MDTabStrip>
@@ -29,9 +26,7 @@
     </GridLayout>
   </MDTabContentItem>
   <MDTabContentItem>
-    <GridLayout>
-      <ns-map></ns-map>
-    </GridLayout>
+    <GridLayout> <ns-personel></ns-personel></GridLayout>
   </MDTabContentItem>
   <MDTabContentItem>
     <GridLayout>

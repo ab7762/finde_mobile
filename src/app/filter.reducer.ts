@@ -10,10 +10,10 @@ export interface FilterState {
   sports: boolean;
 }
 export const initialState: FilterState = {
-  family: true,
-  food: true,
-  music: true,
-  sports: true,
+  family: false,
+  food: false,
+  music: false,
+  sports: false,
 };
 
 export const filterReducer = createReducer(

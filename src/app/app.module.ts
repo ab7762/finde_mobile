@@ -30,6 +30,7 @@ import {
 } from "nativescript-windowed-modal";
 import { ModalModule } from "./modal/modal.module";
 import { filterReducer } from "./filter.reducer";
+import { LikedEventsComponent } from './liked-events/liked-events.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -61,6 +62,7 @@ import { filterReducer } from "./filter.reducer";
     PersonelComponent,
     LoadingPageComponent,
     EventComponent,
+    LikedEventsComponent,
   ],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],

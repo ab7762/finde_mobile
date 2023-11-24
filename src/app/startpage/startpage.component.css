@@ -32,6 +32,9 @@
   margin-bottom: 20%; /* Väliä alempaan teksteihin */
   font-size: 18;
 }
+.register_button:active {
+  background-color: whitesmoke;
+}
 
 .registered {
   font-size: 15;
@@ -46,6 +49,9 @@
   color: #ddd2b2;
   margin-top: 1rem; /* Adjust vertical margin as needed */
   text-decoration: underline;
+}
+.login:active {
+  color: whitesmoke;
 }
 
 .logo {

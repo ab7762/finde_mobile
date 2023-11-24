@@ -2,7 +2,7 @@
   background-image: url("~/icons/kuvio_2_1.png");
   background-size: 90% 80%;
   background-repeat: no-repeat;
-  background-position: -400% 300%;
+  background-position: 90% 300%;
   background-color: #323439;
 }
 .scroll {
@@ -41,13 +41,15 @@
   font-family: fantasy;
 }
 
-.arrow {
-  text-align: right;
-}
 .fas {
   width: 10%;
   color: white;
   margin-top: 2%;
   text-align: right;
-  margin-right: 2%;
+  margin-left: 2%;
+}
+.text {
+  text-align: center;
+  margin-top: 5vh;
+  color: white;
 }

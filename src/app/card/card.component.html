@@ -6,18 +6,17 @@ tietoja notifications-komponentille haetuista tiedoista. -->
   class="cardStyle"
   margin="20"
   elevation="60"
-  radius="10"
+  radius="40"
   width="90%"
   height="40%"
 >
-  <FlexboxLayout>
+  <FlexboxLayout padding="7vh 7vh">
     <StackLayout class="image">
       <Image class="img" [src]="eventData.kuvaUrl"></Image
     ></StackLayout>
     <StackLayout class="content" flexGrow="1">
       <FlexboxLayout justifyContent="space-between">
         <label class="nimi" [text]="eventData.nimi" color="white"></label>
-        <label class="x_ikoni" text="X" horizontalAlignment="right"></label>
       </FlexboxLayout>
       <FlexboxLayout>
         <Image
@@ -70,14 +69,6 @@ tietoja notifications-komponentille haetuista tiedoista. -->
             [text]="eventData.lipunHinta"
           ></label>
         </FlexboxLayout>
-        <Image
-          src="font://&#xf004;"
-          id="sydan"
-          class="fas"
-          width="15"
-          color="white"
-          horizontalAlignment="right"
-        ></Image>
       </FlexboxLayout>
     </StackLayout>
   </FlexboxLayout>

@@ -2,7 +2,7 @@
 <GridLayout color="white" rows="auto, auto" class="body">
   <Image
     *ngIf="this.event && this.event.length > 0"
-    [src]="event[0].kuvaUrl"
+    [src]="this.event[0].kuvaUrl"
     stretch="aspectFill"
     row="0"
     zIndex="1"
@@ -30,11 +30,11 @@
     backgroundColor="#323439"
     radius="40"
   >
-    <StackLayout marginTop="10" marginBottom="100">
+    <StackLayout marginTop="10" marginBottom="0">
       <Label marginLeft="5%" text="Event for you?"></Label>
       <Label
         *ngIf="this.event && this.event.length > 0"
-        fontSize="20"
+        fontSize="18"
         marginTop="5"
         marginLeft="5%"
         [text]="this.event[0].nimi"
@@ -50,7 +50,7 @@
           ></Image>
           <Label
             *ngIf="this.event && this.event.length > 0"
-            [text]="dateToFinnish(event[0].paivamaara)"
+            [text]="this.event[0].aloituspvm"
             marginLeft="10em"
           ></Label
         ></StackLayout>
@@ -61,7 +61,11 @@
             width="15"
             color="white"
           ></Image>
-          <Label text="Tänne alkamisaika" marginLeft="10em"></Label>
+          <Label
+            *ngIf="this.event && this.event.length > 0"
+            [text]="this.event[0].aloitusaika"
+            marginLeft="10em"
+          ></Label>
         </StackLayout>
       </FlexboxLayout>
       <FlexboxLayout marginTop="5" flexDirection="row">
@@ -74,7 +78,7 @@
           ></Image>
           <Label
             *ngIf="this.event && this.event.length > 0"
-            [text]="this.event[0].sijainti[0].paikkakunta"
+            [text]="this.event[0].tapahtumapaikka"
             marginLeft="10em"
           ></Label>
         </StackLayout>
@@ -89,17 +93,45 @@
           ></Image>
           <Label
             *ngIf="this.event && this.event.length > 0"
-            [text]="event[0].lipunHinta"
+            [text]="this.event[0].lippulinkki"
             marginLeft="10em"
           ></Label>
         </StackLayout>
       </FlexboxLayout>
-      <Label text="Kuvaus:" marginTop="20" marginLeft="5%"></Label>
-      <Label
-        *ngIf="this.event && this.event.length > 0"
-        marginLeft="5%"
-        [text]="event[0].kuvaus"
-      ></Label>
+      <StackLayout marginBottom="50vh">
+        <Label text="Kuvaus:" marginTop="20" marginLeft="5%"></Label>
+        <Label
+          *ngIf="this.event && this.event.length > 0"
+          marginLeft="5%"
+          textWrap="true"
+          [text]="this.event[0].kuvaus"
+        ></Label>
+      </StackLayout>
+      <Image
+        *ngIf="!this.liked"
+        (tap)="likeEvent()"
+        horizontalAlignment="right"
+        verticalAlignment="bottom"
+        height="auto"
+        class="fas"
+        width="10%"
+        marginBottom="10vh"
+        marginRight="10vw"
+        src="font://&#xf004;"
+      ></Image>
+      <Image
+        *ngIf="this.liked"
+        (tap)="dislike()"
+        horizontalAlignment="right"
+        verticalAlignment="bottom"
+        height="auto"
+        color="red"
+        class="fas"
+        width="10%"
+        marginBottom="10vh"
+        marginRight="10vw"
+        src="font://&#xf004;"
+      ></Image>
     </StackLayout>
   </CardView>
 </GridLayout>

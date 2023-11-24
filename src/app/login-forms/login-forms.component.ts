@@ -6,12 +6,21 @@ import { Store } from "@ngrx/store";
 import { AuthState } from "../auth.reducer";
 import { login, logout } from "../auth.actions";
 import { Observable } from "rxjs";
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from "@angular/animations";
 @Component({
   selector: "ns-login-forms",
   templateUrl: "./login-forms.component.html",
   styleUrls: ["./login-forms.component.css"],
 })
 export class LoginFormsComponent {
+  buttonFlashState = "inactive";
+
   myForm: FormGroup;
   data: any;
   loggedIn$: Observable<boolean>;

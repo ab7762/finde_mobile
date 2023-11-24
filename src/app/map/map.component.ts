@@ -1,10 +1,13 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from "@angular/core";
 import { registerElement } from "@nativescript/angular";
 import { EventService } from "../event.service";
 import { interval, Subscription } from "rxjs";
 import { LocationService } from "../location.service";
-
+import { ImageSource } from "@nativescript/core/image-source";
 import { Router } from "@angular/router";
+import { FilterState } from "../filter.reducer";
+import { Store } from "@ngrx/store";
+import { getFamily, getMusic, getFood, getSports } from "../filter.selectors";
 registerElement(
   "Mapbox",
   () => require("@nativescript-community/ui-mapbox").MapboxView
@@ -16,6 +19,10 @@ registerElement(
   styleUrls: ["./map.component.css"],
 })
 export class MapComponent implements OnInit, OnDestroy {
+  music: Boolean;
+  family: boolean;
+  food: boolean;
+  sports: boolean;
   events: any;
   mapUpdateInterval = 5000; // 1 minuutin välein (ms)
   mapUpdateSubscription: Subscription;
@@ -23,11 +30,33 @@ export class MapComponent implements OnInit, OnDestroy {
   constructor(
     private eventService: EventService,
     private router: Router,
-    public locationService: LocationService
-  ) {}
+    public locationService: LocationService,
+    private store: Store<{ AppState: FilterState }>,
+    private cdr: ChangeDetectorRef
+  ) {
+    this.store.select(getMusic).subscribe((music) => {
+      this.music = music;
+    });
+    this.store.select(getFamily).subscribe((family) => {
+      this.family = family;
+    });
+    this.store.select(getFood).subscribe((food) => {
+      this.food = food;
+    });
+    this.store.select(getSports).subscribe((sports) => {
+      this.sports = sports;
+    });
+  }
 
   ngOnInit() {
     this.loadEventsAndRefreshMap(); // Alusta komponentti ja lisää markkerit kartalle
+    // Kuuntele filtterimuutoksia
+    // Alusta komponentti ja lisää markkerit kartalle
+    this.mapUpdateSubscription = interval(this.mapUpdateInterval).subscribe(
+      () => {
+        this.loadEventsAndRefreshMap();
+      }
+    );
 
     // Aseta aikavälin mukainen päivitys
   }
@@ -41,8 +70,23 @@ export class MapComponent implements OnInit, OnDestroy {
   loadEventsAndRefreshMap() {
     this.eventService.getEvents().subscribe((response) => {
       this.events = response;
-      console.log("Tiedot päivitetty kartalle:", this.events);
+      this.filterEvents();
+
+      this.cdr.detectChanges();
+
+      console.log("Tiedot päivitetty kartalle:", this.events.length);
       // Kutsu onMapReady päivitettävien tietojen kanssa
+    });
+  }
+  filterEvents() {
+    // Suodata tapahtumat filtterien mukaisesti
+    this.events = this.events.filter((event) => {
+      return (
+        (this.music && event.genre === "music") ||
+        (this.family && event.genre === "family") ||
+        (this.food && event.genre === "food") ||
+        (this.sports && event.genre === "sports")
+      );
     });
   }
 
@@ -50,11 +94,27 @@ export class MapComponent implements OnInit, OnDestroy {
     console.log("map is ready");
     const markers = [];
 
+    const addedCoordinates = new Set(); // Säilyttää lisätyt koordinaatit
+
     this.events.forEach((event) => {
+      let lat = event.sijainti[0].long;
+      let lng = event.sijainti[0].lat;
+
+      // Tarkista, onko samat koordinaatit jo lisätty
+      while (addedCoordinates.has(`${lat}-${lng}`)) {
+        // Generoi uudet koordinaatit, jos samat koordinaatit löytyvät jo
+        lat = event.sijainti[0].long + Math.random() / 1000;
+        lng = event.sijainti[0].lat + Math.random() / 1000;
+      }
+
+      // Lisää koordinaatit lisättyjen joukkoon
+      addedCoordinates.add(`${lat}-${lng}`);
+
       markers.push({
-        lat: event.sijainti[0].long,
-        lng: event.sijainti[0].lat,
+        lat: lat,
+        lng: lng,
         title: event.nimi,
+        iconPath: `~/icons/${event.genre}.png`,
         subtitle: event.kuvaus,
         selected: false,
         onCalloutTap: () => {
@@ -62,13 +122,17 @@ export class MapComponent implements OnInit, OnDestroy {
         },
       });
     });
+
     markers.push({
       lat: this.locationService.latitude,
       lng: this.locationService.longitude,
-      iconPath: "~/icons/liikunta2.png",
+      title: "You are here",
     });
 
     // Lisää markkerit kartalle
     args.map.addMarkers(markers);
+  }
+  navigateToBottombar() {
+    this.router.navigate(["bottom-nav"]);
   }
 }

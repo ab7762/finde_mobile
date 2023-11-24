@@ -3,6 +3,7 @@ import { Router, RouterLink } from "@angular/router";
 import { Store, select } from "@ngrx/store";
 import { getFamily } from "../filter.selectors";
 import { FilterState } from "../filter.reducer";
+
 @Component({
   selector: "ns-startpage",
   templateUrl: "./startpage.component.html",

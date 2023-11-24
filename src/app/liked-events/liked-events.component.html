@@ -1,25 +1,26 @@
-<!-- Ilmoitukset komponentti. Tällä komponentilla näytetään tapahtumat card-komponentin avulla.
-Jokaiselle tapahtumalle välitetään tiedot card-komponentille.  -->
-
 <StackLayout class="body">
   <Image class="logo" src="~/icons/valk_logo.png"></Image>
-  <Label class="ilmoitukset" text="Notifications"></Label>
+  <Label class="ilmoitukset" text="Liked events"></Label>
   <Label
     class="viiva"
     text="-----------------------------------------------------------"
   ></Label>
-  <Label class="events" text="Events for you:"></Label>
+  <Label class="events" text="Your events:"></Label>
   <Image
-    class="fas"
-    src="font://&#xf061;"
-    horizontalAlignment="right"
     (pan)="onSwipe($event)"
-    [isUserInteractionEnabled]="true"
+    class="fas"
+    src="font://&#xf060;"
+    horizontalAlignment="left"
   ></Image>
 
   <ActivityIndicator [busy]="isLoading"></ActivityIndicator>
+  <Label
+    class="text"
+    *ngIf="events && events.length == 0"
+    text="No liked events found"
+  ></Label>
   <ScrollView class="scroll">
-    <StackLayout>
+    <StackLayout *ngIf="events && events.length > 0">
       <ns-card
         *ngFor="let event of events"
         [eventData]="event"

@@ -4,7 +4,7 @@ import { Observable, of } from "rxjs";
 import { map, filter } from "rxjs/operators";
 import { catchError } from "rxjs/operators";
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { SecureStorage } from "@nativescript/secure-storage";
+import { RouterExtensions } from "@nativescript/angular";
 import { Store } from "@ngrx/store";
 import { AuthState } from "./auth.reducer";
 import { login, logout } from "./auth.actions";
@@ -13,12 +13,12 @@ import { selectIsLoggedIn } from "./auth.selectors";
 import { ModalDialogService, ModalDialogOptions } from "@nativescript/angular";
 import { ModalComponent } from "./modal/modal.component";
 import { ExtendedShowModalOptions } from "nativescript-windowed-modal";
-
+import { SecureStorage } from "@nativescript/secure-storage";
+const secureStorage = new SecureStorage();
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
-  private secureStorage: SecureStorage;
   url: string = "https://backendwithlogin-1-u7980985.deta.app/users/login";
   url2: string = "https://d17e239b9ewh66.cloudfront.net/users/register";
   text1: string =
@@ -30,9 +30,9 @@ export class AuthService {
     private http: HttpClient,
     private store: Store<{ appState: AuthState }>,
     private router: Router,
-    private modalService: ModalDialogService
+    private modalService: ModalDialogService,
+    private routerExtensions: RouterExtensions
   ) {
-    this.secureStorage = new SecureStorage();
     this.store.select(selectIsLoggedIn).subscribe((loggedIn: boolean) => {
       this.isLoggedIn = loggedIn; // Aseta loggedIn arvo serviceen muuttujaan
     });
@@ -48,19 +48,29 @@ export class AuthService {
           const payload = this.jwtHelp.decodeToken(token);
           console.log(payload);
           if (payload.sposti === email) {
-            this.secureStorage
+            secureStorage
               .set({
                 key: "token",
                 value: token,
               })
-              .then((suc) => {
-                console.log("Done", suc);
-              });
+              .then((success) =>
+                console.log("Successfully set a value? " + success)
+              );
+            secureStorage
+              .set({
+                key: "id",
+                value: payload._id,
+              })
+              .then((success) =>
+                console.log("Successfully set a value? " + success)
+              );
           }
           this.store.dispatch(login());
-          console.log(this.isLoggedIn);
+
           alert("Login succesfull! Welcome");
-          this.router.navigate(["bottom-nav"]);
+          this.routerExtensions.navigate(["/bottom-nav"], {
+            clearHistory: true,
+          });
           return true; // Palauta true, kun token on saatavilla
         } else {
           this.store
