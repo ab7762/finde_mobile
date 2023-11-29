@@ -14,6 +14,7 @@ import {
   toggleSports,
 } from "../filter.actions";
 import { getFamily, getMusic, getFood, getSports } from "../filter.selectors";
+import { Router, RouterLink } from "@angular/router";
 const secureStorage = new SecureStorage();
 @Component({
   selector: "ns-personel",
@@ -28,8 +29,9 @@ export class PersonelComponent {
   // Haetaan storesta muuttujiin arvot
   constructor(
     private store: Store<{ AppState: FilterState }>,
-    private authstore: Store<{ AppState: AuthState }>,
-    private routerExtensions: RouterExtensions
+
+    private routerExtensions: RouterExtensions,
+    private router: Router
   ) {
     this.store.select(getMusic).subscribe((music) => {
       this.music = music;
@@ -69,44 +71,8 @@ export class PersonelComponent {
       console.log("Sports Value:", sports);
     });
   }
-  async logOut() {
-    const confirmResult = await Dialogs.confirm({
-      title: "Confirm Logout",
-      message: "Are you sure you want to log out?",
-      okButtonText: "Yes",
-      cancelButtonText: "Cancel",
-    });
 
-    if (confirmResult) {
-      // User clicked "Yes" in the confirmation dialog
-      // Perform logout actions
-
-      // 1. Dispatch the logout action to the store
-      this.store.dispatch(logout());
-
-      // 2. Clear secure storage
-      await this.clearSecureStorage();
-
-      // 3. Navigate to the "start" view
-      this.routerExtensions.navigate(["start"], {
-        clearHistory: true,
-        transition: {
-          name: "fade",
-        },
-      });
-    }
-  }
-
-  private async clearSecureStorage() {
-    try {
-      await secureStorage.remove({
-        key: "token",
-      });
-      await secureStorage.remove({
-        key: "id",
-      });
-    } catch (error) {
-      console.error("Error clearing secure storage:", error);
-    }
+  routeSettings() {
+    this.router.navigate(["settings"]);
   }
 }

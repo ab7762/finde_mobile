@@ -28,13 +28,26 @@ export class LikedEventsComponent {
     private Eventservice: EventService,
     private locationService: LocationService,
     private routerExtensions: RouterExtensions,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private router: Router
   ) {}
   // Alustetaan komponentti ja haetaan tapahtumat. Jos lataus kestää, asetetaan latausikoni näytölle. Suoritetaan loadevents
   // tapahtuma minuutin välein ja päivitetään uusi tilanne näytölle.
   ngOnInit() {
     this.getLikedEvents(); // Lataa aluksi tapahtumat
     this.isLoading = false;
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        takeUntil(this.destroy$)
+      )
+      .subscribe((event: NavigationEnd) => {
+        const previousRoute = this.router.url; // Tarkista edellinen reitti url-ominaisuuden avulla
+        if (previousRoute.includes("event")) {
+          // Edellinen reitti oli 'events', tee tarvittavat toimet komponentin uudelleen alustamiseksi
+          this.ngOnInit();
+        }
+      });
   }
   async getLikedEvents() {
     try {

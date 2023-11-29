@@ -31,6 +31,8 @@ import {
 import { ModalModule } from "./modal/modal.module";
 import { filterReducer } from "./filter.reducer";
 import { LikedEventsComponent } from './liked-events/liked-events.component';
+import { UserPrivacyComponent } from './user-privacy/user-privacy.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -63,6 +65,8 @@ import { LikedEventsComponent } from './liked-events/liked-events.component';
     LoadingPageComponent,
     EventComponent,
     LikedEventsComponent,
+    UserPrivacyComponent,
+    SettingsComponent,
   ],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],

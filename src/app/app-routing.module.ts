@@ -19,8 +19,9 @@ import { PersonelComponent } from "./personel/personel.component";
 import { EventComponent } from "./event/event.component";
 import { LikedEventsComponent } from "./liked-events/liked-events.component";
 import { LoadingPageComponent } from "./loading-page/loading-page.component";
+import { SettingsComponent } from "./settings/settings.component";
 const routes: Routes = [
-  { path: "", redirectTo: "start", pathMatch: "full" },
+  { path: "", redirectTo: "settings", pathMatch: "full" },
 
   { path: "register", component: RegisterComponent, canActivate: [LogGuard] },
   { path: "start", component: StartpageComponent, canActivate: [LogGuard] },
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: "personel", component: PersonelComponent, canActivate: [AuthGuard] },
   { path: "event/:id", component: EventComponent },
   { path: "likedevents", component: LikedEventsComponent },
+  { path: "settings", component: SettingsComponent },
 ];
 
 @NgModule({

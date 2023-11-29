@@ -4,6 +4,7 @@ import { EventService } from "../event.service";
 import { Location } from "@angular/common";
 import { format } from "date-fns";
 import { SecureStorage } from "@nativescript/secure-storage";
+
 const secureStorage = new SecureStorage();
 @Component({
   selector: "ns-event",
@@ -96,7 +97,26 @@ export class EventComponent {
       .subscribe((res) => console.log(res));
     this.liked = !this.liked;
   }
-  dislike() {
+  async dislike() {
+    try {
+      this.token = await secureStorage.get({
+        key: "token",
+      });
+      console.log(this.token);
+    } catch (error) {
+      console.error("Error retrieving token from secure storage:", error);
+    }
+    try {
+      this.userid = await secureStorage.get({
+        key: "id",
+      });
+      console.log(this.userid);
+    } catch (error) {
+      console.error("Error retrieving token from secure storage:", error);
+    }
+    this.eventService
+      .unlikeEvent(this.userid, this.event[0]._id, this.token)
+      .subscribe((res) => console.log(res));
     this.liked = !this.liked;
   }
 }

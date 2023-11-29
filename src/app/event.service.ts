@@ -50,4 +50,13 @@ export class EventService {
   getLikedEvents(userid) {
     return this.http.get(`${this.url2}/liked/${userid}`);
   }
+
+  unlikeEvent(userid, eventid, token) {
+    const url = `${this.url2}/${userid}/${eventid}`;
+    const headers = {
+      "x-access-token": token,
+      // Lisää muita otsikoita tarvittaessa
+    };
+    return this.http.delete(url, { headers: headers });
+  }
 }
