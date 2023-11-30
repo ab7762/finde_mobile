@@ -1,0 +1,30 @@
+<StackLayout class="body">
+  <Image class="logo" src="~/icons/valk_logo.png"></Image>
+  <Label class="ilmoitukset" text="Liked events"></Label>
+  <Label
+    class="viiva"
+    text="-----------------------------------------------------------"
+  ></Label>
+  <Label class="events" text="Your events:"></Label>
+  <Image
+    (pan)="onSwipe($event)"
+    class="fas"
+    src="font://&#xf060;"
+    horizontalAlignment="left"
+  ></Image>
+
+  <ActivityIndicator [busy]="isLoading"></ActivityIndicator>
+  <Label
+    class="text"
+    *ngIf="events && events.length == 0"
+    text="No liked events found"
+  ></Label>
+  <ScrollView class="scroll">
+    <StackLayout *ngIf="events && events.length > 0">
+      <ns-card
+        *ngFor="let event of events"
+        [eventData]="event"
+        [imageUrl]="this.imageUrl"
+      ></ns-card> </StackLayout
+  ></ScrollView>
+</StackLayout>

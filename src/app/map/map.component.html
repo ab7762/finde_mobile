@@ -1,7 +1,8 @@
 <!-- Mapbox-kartta.  -->
 
-<ContentView height="100%" width="100%">
+<GridLayout rows="*, auto">
   <Mapbox
+    row="0"
     accessToken="pk.eyJ1IjoibWlra28xOTg1IiwiYSI6ImNsbmlyazhqczA2N20yeHFvbGpxaHozOW4ifQ.GdqmP1CH2_dAOa40He98-Q"
     mapStyle="traffic_day"
     [latitude]="this.locationService.latitude"
@@ -16,6 +17,7 @@
     disableTilt="false"
     trackUser="true"
     (mapReady)="onMapReady($event)"
-  >
-  </Mapbox>
-</ContentView>
+  ></Mapbox>
+
+  <Button row="1" text="Back" (tap)="navigateToBottombar()"></Button>
+</GridLayout>

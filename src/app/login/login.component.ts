@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { SecureStorage } from "@nativescript/secure-storage";
+import { RouterExtensions } from "@nativescript/angular";
 import { LoginFormsComponent } from "../login-forms/login-forms.component";
 import { Store } from "@ngrx/store";
 import { Router } from "@angular/router";
@@ -31,12 +31,11 @@ export class LoginComponent {
   constructor(
     private http: HttpClient,
     private store: Store<{ appState: AuthState }>,
-    private router: Router
-  ) {
-    this.secureStorage = new SecureStorage();
-  }
+    private router: Router,
+    private routerExtensions: RouterExtensions
+  ) {}
   token: any;
-  private secureStorage: SecureStorage;
+
   private jwtHelp = new JwtHelperService();
 
   // Google-kirjautumisen funktio. Kun googlelta saadaan tiedot onnistuneesti, lähetetään googlen tiedot backend-
@@ -73,7 +72,9 @@ export class LoginComponent {
               this.store.dispatch(login());
               this.wait(5000);
               this.loading = false;
-              this.router.navigate(["bottom-nav"]);
+              this.routerExtensions.navigate(["/bottom-nav"], {
+                clearHistory: true,
+              });
 
               return true; // Palauta true, kun token on saatavilla
             } else {

@@ -1,7 +1,12 @@
 import { Component } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { FilterState } from "../filter.reducer";
+import { AuthState } from "../auth.reducer";
+import { Dialogs } from "@nativescript/core";
+import { RouterExtensions } from "@nativescript/angular";
+import { SecureStorage } from "@nativescript/secure-storage";
 import { Observable } from "rxjs";
+import { logout } from "../auth.actions";
 import {
   toggleMusic,
   toggleFamily,
@@ -9,6 +14,8 @@ import {
   toggleSports,
 } from "../filter.actions";
 import { getFamily, getMusic, getFood, getSports } from "../filter.selectors";
+import { Router, RouterLink } from "@angular/router";
+const secureStorage = new SecureStorage();
 @Component({
   selector: "ns-personel",
   templateUrl: "./personel.component.html",
@@ -20,7 +27,12 @@ export class PersonelComponent {
   food: boolean;
   sports: boolean;
   // Haetaan storesta muuttujiin arvot
-  constructor(private store: Store<{ AppState: FilterState }>) {
+  constructor(
+    private store: Store<{ AppState: FilterState }>,
+
+    private routerExtensions: RouterExtensions,
+    private router: Router
+  ) {
     this.store.select(getMusic).subscribe((music) => {
       this.music = music;
     });
@@ -58,5 +70,9 @@ export class PersonelComponent {
     this.store.select(getSports).subscribe((sports) => {
       console.log("Sports Value:", sports);
     });
+  }
+
+  routeSettings() {
+    this.router.navigate(["settings"]);
   }
 }

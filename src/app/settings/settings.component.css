@@ -1,0 +1,64 @@
+.body {
+  background-color: #323439;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-image: url("~/icons/kuvio_2_1.png"); /* ympyrät */
+  background-position: center; /* Ympyrä keskelle */
+  background-repeat: no-repeat; /* Prevent repeating the image */
+  background-size: 140% 90%; /* Customize the background image size */
+}
+
+.header {
+  text-align: center;
+  margin-top: 3%;
+  font-size: 30;
+  color: white;
+  font-weight: bold;
+  margin-top: 5%;
+}
+.iconbutton {
+  width: 8%;
+  background-image: url("~/icons/profiili2.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #323439;
+}
+.text {
+  color: white;
+  font-size: 17;
+  font-weight: bold;
+}
+.iconbuttondistance {
+  width: 10%;
+  background-image: url("~/icons/etaisyys2.png");
+  background-size: contain; /* koko säilyy suhteessa, mahdollisesti käytä 'cover' sijaan */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #323439;
+}
+
+.iconbuttonpolicy {
+  width: 10%;
+  background-image: url("~/icons/laki2.png");
+  background-size: contain; /* koko säilyy suhteessa, mahdollisesti käytä 'cover' sijaan */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #323439;
+}
+.iconbuttondelete {
+  width: 10%;
+  background-image: url("~/icons/poista2.png");
+  background-size: contain; /* koko säilyy suhteessa, mahdollisesti käytä 'cover' sijaan */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #323439;
+}
+
+.iconbuttonsignout {
+  width: 10%;
+  background-image: url("~/icons/logout.png");
+  background-size: contain; /* koko säilyy suhteessa, mahdollisesti käytä 'cover' sijaan */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #323439;
+}

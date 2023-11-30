@@ -12,12 +12,14 @@
 
 .logo {
   width: 50%;
+  justify-content: center;
   flex: 1;
   margin-top: 2%;
 }
 .menu {
-  width: 7%;
-  margin-top: 2%;
+  width: 8%;
+  position: absolute;
+  margin-right: 1%;
 }
 
 .text {
