@@ -15,8 +15,9 @@
   width: 80%;
 }
 
-#googleicon {
-  color: red;
+#googleIcon {
+  width: 30px;
+  align-items: left;
 }
 
 .otsikko {

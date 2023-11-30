@@ -59,7 +59,7 @@ export class AuthService {
           }
           this.store.dispatch(login());
           console.log(this.isLoggedIn);
-          alert("Login succesfull! Welcome");
+          alert("Login succesful! Welcome");
           this.router.navigate(["bottom-nav"]);
           return true; // Palauta true, kun token on saatavilla
         } else {
