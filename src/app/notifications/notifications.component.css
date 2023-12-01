@@ -23,6 +23,13 @@
   margin-top: 2%;
 }
 
+/* register ja your account details kuvan tyylittelyt */
+.notificationsBanner {
+  width: 800px; /* Adjust the size as needed */
+  margin-top: 100px;
+  height: auto; /* Maintain the aspect ratio */
+}
+
 .ilmoitukset {
   text-align: center;
   color: white;

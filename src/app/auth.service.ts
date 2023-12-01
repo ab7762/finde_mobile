@@ -104,7 +104,7 @@ export class AuthService {
           }
           this.store.dispatch(login());
 
-          alert("Login succesfull! Welcome");
+          alert("Login succesful! Welcome");
           this.routerExtensions.navigate(["/bottom-nav"], {
             clearHistory: true,
           });
