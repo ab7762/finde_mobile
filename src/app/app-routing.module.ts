@@ -21,7 +21,7 @@ import { LikedEventsComponent } from "./liked-events/liked-events.component";
 import { LoadingPageComponent } from "./loading-page/loading-page.component";
 import { SettingsComponent } from "./settings/settings.component";
 const routes: Routes = [
-  { path: "", redirectTo: "settings", pathMatch: "full" },
+  { path: "", redirectTo: "start", pathMatch: "full" },
 
   { path: "register", component: RegisterComponent, canActivate: [LogGuard] },
   { path: "start", component: StartpageComponent, canActivate: [LogGuard] },

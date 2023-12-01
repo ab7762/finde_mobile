@@ -8,12 +8,14 @@ export interface FilterState {
   food: boolean;
   music: boolean;
   sports: boolean;
+  distance: number;
 }
 export const initialState: FilterState = {
   family: false,
   food: false,
   music: false,
   sports: false,
+  distance: 50,
 };
 
 export const filterReducer = createReducer(
@@ -27,5 +29,9 @@ export const filterReducer = createReducer(
   on(filterActions.toggleSports, (state) => ({
     ...state,
     sports: !state.sports,
+  })),
+  on(filterActions.updateDistance, (state, { distance }) => ({
+    ...state,
+    distance,
   }))
 );

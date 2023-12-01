@@ -16,3 +16,7 @@ export const getSports = createSelector(
   selectFilterState,
   (state) => state.sports
 );
+export const getDistance = createSelector(
+  selectFilterState,
+  (state) => state.distance
+);

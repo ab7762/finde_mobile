@@ -20,6 +20,8 @@ import {
   wireInFacebookLogin,
 } from "@klippa/nativescript-login";
 import { login } from "../auth.actions";
+import { SecureStorage } from "@nativescript/secure-storage";
+const secureStorage = new SecureStorage();
 @Component({
   selector: "ns-login",
   templateUrl: "./login.component.html",
@@ -52,42 +54,74 @@ export class LoginComponent {
 
     // Please note that result can also be a failure result.
     // The actual result is in the object.
-    startGoogleSignIn(signInOptions).then((result) => {
-      this.loading = true;
-      console.log("Google sign in result: ", result);
-      if (result.ResultType == 0) {
-        this.loading = false;
-      }
-      return this.http
-        .post("https://backendwithlogin-1-u7980985.deta.app/users/glogin", {
-          gtoken: result.IdToken,
-        })
-        .pipe(
-          map((res: any) => {
-            console.log("Tässä vastaus", res);
-            const token = res["token"];
-            if (token) {
-              this.token = token;
-              console.log(token);
-              this.store.dispatch(login());
-              this.wait(5000);
-              this.loading = false;
-              this.routerExtensions.navigate(["/bottom-nav"], {
-                clearHistory: true,
-              });
-
-              return true; // Palauta true, kun token on saatavilla
-            } else {
-              console.log("Pieleen meni");
-              this.loading = false;
-              return false;
-            } // Palauta false, jos tokenia ei löydy
+    startGoogleSignIn(signInOptions)
+      .then((result) => {
+        this.loading = true;
+        console.log("Google sign in result: ", result);
+        if (result.ResultType == 0) {
+          this.loading = false;
+        }
+        return this.http
+          .post("https://backendwithlogin-1-u7980985.deta.app/users/glogin", {
+            gtoken: result.IdToken,
           })
-        )
-        .subscribe((res) => {
-          console.log(res);
-        });
-    });
+          .pipe(
+            map((res: any) => {
+              console.log("Tässä vastaus", res);
+              const token = res["token"];
+
+              if (token) {
+                this.token = token;
+                const payload = this.jwtHelp.decodeToken(token);
+                console.log(token);
+                console.log("Tässä googlen jälkeen payload", payload);
+                secureStorage
+                  .set({
+                    key: "token",
+                    value: token,
+                  })
+                  .then((success) =>
+                    console.log("Successfully set a value? " + success)
+                  );
+                secureStorage
+                  .set({
+                    key: "id",
+                    value: payload._id,
+                  })
+                  .then((success) =>
+                    console.log("Successfully set a value? " + success)
+                  );
+                this.store.dispatch(login());
+                this.wait(5000);
+                this.loading = false;
+                this.routerExtensions.navigate(["/bottom-nav"], {
+                  clearHistory: true,
+                });
+
+                return true; // Palauta true, kun token on saatavilla
+              }
+              if (res.ok === false) {
+                console.log("Pieleen meni");
+                this.loading = false;
+
+                return false;
+              } // Palauta false, jos tokenia ei löydy
+            })
+          )
+          .subscribe(
+            (res) => {
+              console.log(res);
+            },
+            (error) => {
+              console.error("HTTP-virhe: ", error);
+              this.loading = false;
+            }
+          );
+      })
+      .catch((error) => {
+        console.error("Google-kirjautumisen virhe: ", error);
+        this.loading = false;
+      });
   }
 
   async wait(ms: number) {

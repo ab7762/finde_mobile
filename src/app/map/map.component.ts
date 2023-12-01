@@ -97,14 +97,14 @@ export class MapComponent implements OnInit, OnDestroy {
     const addedCoordinates = new Set(); // Säilyttää lisätyt koordinaatit
 
     this.events.forEach((event) => {
-      let lat = event.sijainti[0].long;
-      let lng = event.sijainti[0].lat;
+      let lat = event.sijainti[0].lat;
+      let lng = event.sijainti[0].long;
 
       // Tarkista, onko samat koordinaatit jo lisätty
       while (addedCoordinates.has(`${lat}-${lng}`)) {
         // Generoi uudet koordinaatit, jos samat koordinaatit löytyvät jo
-        lat = event.sijainti[0].long + Math.random() / 1000;
-        lng = event.sijainti[0].lat + Math.random() / 1000;
+        lat = event.sijainti[0].lat + Math.random() / 1000;
+        lng = event.sijainti[0].long + Math.random() / 1000;
       }
 
       // Lisää koordinaatit lisättyjen joukkoon

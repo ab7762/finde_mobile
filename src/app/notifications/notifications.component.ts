@@ -12,7 +12,13 @@ import { Animation } from "@nativescript/core/ui/animation";
 import { CoreTypes } from "@nativescript/core";
 import { FilterState } from "../filter.reducer";
 import { Store } from "@ngrx/store";
-import { getFamily, getMusic, getFood, getSports } from "../filter.selectors";
+import {
+  getFamily,
+  getMusic,
+  getFood,
+  getSports,
+  getDistance,
+} from "../filter.selectors";
 @Component({
   selector: "ns-notifications",
   templateUrl: "./notifications.component.html",
@@ -24,6 +30,7 @@ export class NotificationsComponent implements OnInit {
   family: boolean;
   food: boolean;
   sports: boolean;
+  distance: number;
 
   isLoading: boolean = true;
   imageUrl: string = "~/images/harrastukset.jpg";
@@ -47,10 +54,14 @@ export class NotificationsComponent implements OnInit {
     this.store.select(getSports).subscribe((sports) => {
       this.sports = sports;
     });
+    this.store.select(getDistance).subscribe((distance) => {
+      this.distance = distance;
+    });
   }
   // Alustetaan komponentti ja haetaan tapahtumat. Jos lataus kestää, asetetaan latausikoni näytölle. Suoritetaan loadevents
   // tapahtuma minuutin välein ja päivitetään uusi tilanne näytölle.
   ngOnInit() {
+    this.locationService.getLocation();
     this.loadEvents(); // Lataa aluksi tapahtumat
 
     // Päivitä tapahtumat 5 minuutin välein
@@ -81,11 +92,22 @@ export class NotificationsComponent implements OnInit {
   filterEvents() {
     // Suodata tapahtumat filtterien mukaisesti
     this.events = this.events.filter((event) => {
+      console.log(event, "Tässä tämän hetkinen tapahtuma");
+      const isMusicMatch = this.music === (event.genre === "music");
+      const isFamilyMatch = this.family === (event.genre === "family");
+      const isFoodMatch = this.food === (event.genre === "food");
+      const isSportsMatch = this.sports === (event.genre === "sports");
+      const isDistanceMatch = this.eventInsideDistance(
+        event.sijainti[0].lat,
+        event.sijainti[0].long,
+        this.locationService.latitude,
+        this.locationService.longitude
+      );
+      console.log(isMusicMatch, isFamilyMatch, isFoodMatch, isSportsMatch);
+
       return (
-        (this.music && event.genre === "music") ||
-        (this.family && event.genre === "family") ||
-        (this.food && event.genre === "food") ||
-        (this.sports && event.genre === "sports")
+        (isMusicMatch || isFamilyMatch || isFoodMatch || isSportsMatch) &&
+        isDistanceMatch
       );
     });
   }
@@ -124,5 +146,11 @@ export class NotificationsComponent implements OnInit {
         });
       }
     });
+  }
+  eventInsideDistance(lat1, long1, lat2, long2) {
+    console.log(lat1, long1, lat2, long2, "Tässä vertailtavat arvot");
+    const d = this.locationService.getDistance(lat1, long1, lat2, long2);
+    console.log("Tässä yksi vertailu ", d);
+    return d <= this.distance;
   }
 }

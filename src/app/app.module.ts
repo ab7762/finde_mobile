@@ -30,9 +30,9 @@ import {
 } from "nativescript-windowed-modal";
 import { ModalModule } from "./modal/modal.module";
 import { filterReducer } from "./filter.reducer";
-import { LikedEventsComponent } from './liked-events/liked-events.component';
-import { UserPrivacyComponent } from './user-privacy/user-privacy.component';
-import { SettingsComponent } from './settings/settings.component';
+import { LikedEventsComponent } from "./liked-events/liked-events.component";
+import { UserPrivacyComponent } from "./user-privacy/user-privacy.component";
+import { SettingsComponent } from "./settings/settings.component";
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -45,6 +45,7 @@ import { SettingsComponent } from './settings/settings.component';
     NativeScriptFormsModule,
     ModalModule,
     ReactiveFormsModule,
+
     CheckBoxModule,
     StoreModule.forRoot({ appState: authReducer, filterState: filterReducer }),
   ],

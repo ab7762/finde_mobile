@@ -21,6 +21,7 @@ const secureStorage = new SecureStorage();
 export class AuthService {
   url: string = "https://backendwithlogin-1-u7980985.deta.app/users/login";
   url2: string = "https://d17e239b9ewh66.cloudfront.net/users/register";
+  url3: string = "https://backendwithlogin-1-u7980985.deta.app/users";
   text1: string =
     "Vahvistusviesti lähetetty sähköpostiin. Klikkaa linkkiä niin voit kirjautua.";
   isLoggedIn: boolean;
@@ -48,6 +49,42 @@ export class AuthService {
           const payload = this.jwtHelp.decodeToken(token);
           console.log(payload);
           if (payload.sposti === email) {
+            console.log("Payload sposti:", payload.sposti);
+            const sapo = payload.sposti;
+            console.log(sapo);
+            secureStorage
+              .set({
+                key: "sukunimi",
+                value: payload.sukunimi,
+              })
+              .then((success) =>
+                console.log("Successfully set a value? " + success)
+              )
+              .catch((error) => {
+                console.error("Error setting sposti value:", error);
+              });
+            secureStorage
+              .set({
+                key: "etunimi",
+                value: payload.etunimi,
+              })
+              .then((success) =>
+                console.log("Successfully set a value? " + success)
+              )
+              .catch((error) => {
+                console.error("Error setting sposti value:", error);
+              });
+            secureStorage
+              .set({
+                key: "sposti",
+                value: sapo,
+              })
+              .then((success) =>
+                console.log("Successfully set a value? " + success)
+              )
+              .catch((error) => {
+                console.error("Error setting sposti value:", error);
+              });
             secureStorage
               .set({
                 key: "token",
@@ -126,5 +163,36 @@ export class AuthService {
     const result = await this.modalService.showModal(ModalComponent, options);
 
     console.log("Modal response:", result);
+  }
+  deleteUser(userid, token) {
+    const url = `${this.url3}/${userid}`;
+    const headers = {
+      "x-access-token": token,
+      // Lisää muita otsikoita tarvittaessa
+    };
+    return this.http.delete(url, { headers: headers });
+  }
+
+  async logOut() {
+    this.store.dispatch(logout());
+
+    // 2. Clear secure storage
+    await this.clearSecureStorage();
+
+    // 3. Navigate to the "start" view
+    this.routerExtensions.navigate(["start"], {
+      clearHistory: true,
+      transition: {
+        name: "fade",
+      },
+    });
+  }
+
+  private async clearSecureStorage() {
+    secureStorage
+      .removeAll()
+      .then((success) =>
+        console.log("Successfully removed a value? " + success)
+      );
   }
 }

@@ -1,25 +1,83 @@
-<StackLayout class="body">
-  <Label class="header" text="Settings"></Label>
-  <StackLayout marginTop="10%">
-    <FlexboxLayout>
-      <Button class="iconbutton" (tap)="signOut()"></Button>
-      <Label class="text" text="Profile information"></Label>
-    </FlexboxLayout>
-    <FlexboxLayout marginTop="3%">
-      <Button class="iconbuttondistance"></Button>
-      <Label class="text" text="Distance determination"></Label>
-    </FlexboxLayout>
-    <FlexboxLayout marginTop="3%">
-      <Button class="iconbuttonpolicy"></Button>
-      <Label class="text" text="Terms of Use and privacy policy"></Label>
-    </FlexboxLayout>
-    <FlexboxLayout marginTop="3%">
-      <Button class="iconbuttondelete"></Button>
-      <Label class="text" text="Delete account"></Label>
-    </FlexboxLayout>
-    <FlexboxLayout marginTop="3%">
-      <Button class="iconbuttonsignout"></Button>
-      <Label class="text" text="Sign out"></Label>
-    </FlexboxLayout>
+<ScrollView>
+  <StackLayout class="body">
+    <Image
+      (tap)="goBack()"
+      src="font://&#xf060;"
+      class="fas"
+      width="30"
+      height="30"
+      row="0"
+      color="#DDD1B2"
+      verticalAlignment="top"
+      horizontalAlignment="left"
+      zIndex="10"
+      margin="10"
+    ></Image>
+    <Label class="header" text="Settings"></Label>
+    <StackLayout marginTop="30vh">
+      <FlexboxLayout>
+        <Button class="iconbutton" (tap)="toggleUser()"></Button>
+        <Label class="text" text="Profile information"></Label>
+      </FlexboxLayout>
+      <StackLayout *ngIf="user" class="tausta">
+        <FlexboxLayout justifyContent="space-between">
+          <Label class="usertext" text="Signed in:"></Label>
+          <label class="edit_text" text="Edit"></label>
+        </FlexboxLayout>
+        <Label
+          class="nimi"
+          text="{{ this.firstname }} {{ this.lastname }}"
+        ></Label>
+        <label class="email" text="{{ this.email }}"></label>
+      </StackLayout>
+      <FlexboxLayout marginTop="20vh">
+        <Button (tap)="toggleDistance()" class="iconbuttondistance"></Button>
+        <Label class="text" text="Distance determination"></Label>
+      </FlexboxLayout>
+      <StackLayout *ngIf="this.showdistance">
+        <label class="distance" [text]="this.distance + ' Km'"></label>
+        <Slider
+          marginTop="0"
+          [value]="this.distance"
+          Km`
+          minValue="10"
+          maxValue="100"
+          (valueChange)="onSliderChange($event)"
+        />
+        <Label class="tip" text="Set distance for notifications"></Label>
+      </StackLayout>
+      <FlexboxLayout marginTop="20vh">
+        <Button class="iconbuttonpolicy"></Button>
+        <Label class="text" text="Terms of Use and privacy policy"></Label>
+      </FlexboxLayout>
+      <FlexboxLayout marginTop="20vh">
+        <Button (tap)="toggleDelete()" class="iconbuttondelete"></Button>
+        <Label class="text" text="Delete account"></Label>
+      </FlexboxLayout>
+      <StackLayout *ngIf="delete">
+        <Label class="confirm_text" style="white-space: normal" textWrap="true">
+          <span class="normal_text">Confirm delete and type </span>
+          <span class="special_text">Delete</span>
+          <span class="special_text">{{ this.email }}</span>
+        </Label>
+        <TextField
+          (textChange)="onTextChange($event)"
+          class="confirm"
+          hint="text"
+          keyboardType="email"
+          [ngClass]="{ confirmerror: error }"
+        ></TextField>
+        <Button
+          (tap)="deleteUser()"
+          class="deleteButton"
+          text="Delete"
+        ></Button>
+      </StackLayout>
+
+      <FlexboxLayout marginTop="20vh">
+        <Button (tap)="signOut()" class="iconbuttonsignout"></Button>
+        <Label class="text" text="Sign out"></Label>
+      </FlexboxLayout>
+    </StackLayout>
   </StackLayout>
-</StackLayout>
+</ScrollView>

@@ -2,18 +2,17 @@
   background-color: #323439;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   background-image: url("~/icons/kuvio_2_1.png"); /* ympyrät */
-  background-position: center; /* Ympyrä keskelle */
+  background-position: 50% -300%; /* Ympyrä keskelle */
   background-repeat: no-repeat; /* Prevent repeating the image */
   background-size: 140% 90%; /* Customize the background image size */
 }
 
 .header {
   text-align: center;
-  margin-top: 3%;
+  margin-top: -10vh;
   font-size: 30;
-  color: white;
+  color: #ddd1b2;
   font-weight: bold;
-  margin-top: 5%;
 }
 .iconbutton {
   width: 8%;
@@ -27,6 +26,59 @@
   color: white;
   font-size: 17;
   font-weight: bold;
+}
+.usertext {
+  color: white;
+  font-size: 15;
+  padding: 10%;
+}
+.edit_text {
+  color: white;
+  font-size: 15;
+  text-decoration: underline;
+  padding: 10%;
+}
+.nimi {
+  color: white;
+  font-size: 15;
+  padding-top: 5%;
+  padding-left: 10%;
+}
+.email {
+  color: white;
+  font-size: 15;
+  padding-top: 2%;
+  padding-left: 10%;
+  padding-bottom: 10%;
+}
+.tausta {
+  background-color: #494b50;
+  width: 90%;
+  border-width: 2px;
+  border-radius: 10;
+  box-shadow: 2 4 4;
+}
+
+.distance {
+  color: white;
+
+  margin-bottom: 0;
+  text-align: center;
+}
+.tip {
+  color: #ddd1b2;
+
+  margin-top: 1vh;
+  text-align: center;
+}
+.confirm_text {
+  color: white;
+
+  margin-top: 1vh;
+  text-align: center;
+}
+.special_text {
+  color: #f8efd6;
 }
 .iconbuttondistance {
   width: 10%;
@@ -61,4 +113,28 @@
   background-repeat: no-repeat;
   background-position: center;
   background-color: #323439;
+  margin-bottom: 10vh;
+}
+
+.confirm {
+  /* Lisää reunaviiva */
+
+  border-color: lightgrey; /* Määritä reunaviivan väri */
+  border-radius: 25; /* Pyöristä reunoja tarvittaessa */
+  padding: 10; /* Voit lisätä täytettä tarvittaessa */
+  margin-top: 0; /* Voit lisätä yläreunaa tarvittaessa */
+  font-size: 13;
+  background-color: #ffffff;
+  color: black;
+  box-shadow: 0px 1px 1px 2px;
+}
+
+.deleteButton {
+  width: 25%;
+  border-radius: 5;
+}
+
+.confirmerror {
+  border-color: red;
+  border-width: 5px;
 }
