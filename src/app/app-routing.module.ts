@@ -20,27 +20,20 @@ import { EventComponent } from "./event/event.component";
 import { LikedEventsComponent } from "./liked-events/liked-events.component";
 import { LoadingPageComponent } from "./loading-page/loading-page.component";
 import { SettingsComponent } from "./settings/settings.component";
+import { UserPrivacyComponent } from "./user-privacy/user-privacy.component";
 const routes: Routes = [
-  { path: "", redirectTo: "login", pathMatch: "full" },
-
+  { path: "", redirectTo: "settings", pathMatch: "full" },
   { path: "register", component: RegisterComponent, canActivate: [LogGuard] },
   { path: "start", component: StartpageComponent, canActivate: [LogGuard] },
-  {
-    path: "bottom-nav",
-    component: BottomNavComponent,
-    canActivate: [AuthGuard],
-  },
+  { path: "bottom-nav", component: BottomNavComponent, canActivate: [AuthGuard] },
   { path: "login", component: LoginComponent, canActivate: [LogGuard] },
   { path: "map", component: MapComponent, canActivate: [AuthGuard] },
-  {
-    path: "notifications",
-    component: NotificationsComponent,
-    canActivate: [AuthGuard],
-  },
+  { path: "notifications", component: NotificationsComponent, canActivate: [AuthGuard] },
   { path: "personel", component: PersonelComponent, canActivate: [AuthGuard] },
   { path: "event/:id", component: EventComponent },
   { path: "likedevents", component: LikedEventsComponent },
   { path: "settings", component: SettingsComponent },
+  { path: "user-privacy", component: UserPrivacyComponent }, // Add this line
 ];
 
 @NgModule({

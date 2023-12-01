@@ -8,6 +8,7 @@ import { RouterExtensions } from "@nativescript/angular";
 
 import { AuthState } from "../auth.reducer";
 const secureStorage = new SecureStorage();
+
 @Component({
   selector: "ns-settings",
   templateUrl: "./settings.component.html",
@@ -18,6 +19,7 @@ export class SettingsComponent {
     private store: Store<{ AppState: AuthState }>,
     private routerExtensions: RouterExtensions
   ) {}
+
   async signOut() {
     const confirmResult = await Dialogs.confirm({
       title: "Confirm Logout",
@@ -57,5 +59,14 @@ export class SettingsComponent {
     } catch (error) {
       console.error("Error clearing secure storage:", error);
     }
+  }
+
+  navigateToPrivacy() {
+    // Navigate to the "user-privacy" view
+    this.routerExtensions.navigate(["user-privacy"], {
+      transition: {
+        name: "fade",
+      },
+    });
   }
 }

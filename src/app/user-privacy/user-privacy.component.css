@@ -1,0 +1,54 @@
+.body {
+  background-color: #323439;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-image: url("~/images/bg_gdpr.png");
+  background-position: center;
+  background-repeat: repeat;
+  background-size: 100% 20%;
+}
+
+.scroll-content {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  padding: 20px; /* Add 'px' for the unit */
+  box-sizing: border-box;
+  padding-left: 5em;
+  padding-right: 5em;
+}
+
+.section {
+  padding-left: 10%;
+  padding-right: 10%;
+  color: #F8EFD6;
+}
+
+.header {
+  font-size: 24px; /* Add 'px' for the unit */
+  margin-bottom: 30em;
+  margin-top: 10em;
+  font-weight: bold;
+  padding-bottom: 10%; /* Add 'px' for the unit */
+  text-align: center;
+  color: white;
+}
+
+.subheader {
+  font-size: 20px; /* Add 'px' for the unit */
+  font-weight: bold;
+  margin-bottom: 10px; /* Add 'px' for the unit */
+  color: white;
+}
+
+.content {
+  font-size: 18px; /* Add 'px' for the unit */
+  margin-bottom: 15px; /* Add 'px' for the unit */
+}
+
+/* FindE logon tyylittelyt */
+.logo {
+  width: 500px; /* Koko */
+  margin-top: 50px;
+  height: auto;
+}

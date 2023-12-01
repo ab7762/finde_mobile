@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import './user-privacy.component.css';
 
 @Component({
   selector: 'ns-user-privacy',
