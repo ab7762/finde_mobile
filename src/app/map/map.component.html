@@ -3,7 +3,7 @@
 <GridLayout rows="*, auto">
   <Mapbox
     row="0"
-    accessToken="pk.eyJ1IjoibWlra28xOTg1IiwiYSI6ImNsbmlyazhqczA2N20yeHFvbGpxaHozOW4ifQ.GdqmP1CH2_dAOa40He98-Q"
+    [accessToken]="mapToken"
     mapStyle="traffic_day"
     [latitude]="this.locationService.latitude"
     [longitude]="this.locationService.longitude"

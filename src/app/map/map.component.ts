@@ -4,7 +4,7 @@ import { EventService } from "../event.service";
 import { interval, Subscription } from "rxjs";
 import { LocationService } from "../location.service";
 import { ImageSource } from "@nativescript/core/image-source";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { FilterState } from "../filter.reducer";
 import { Store } from "@ngrx/store";
 import { getFamily, getMusic, getFood, getSports } from "../filter.selectors";
@@ -26,13 +26,17 @@ export class MapComponent implements OnInit, OnDestroy {
   events: any;
   mapUpdateInterval = 5000; // 1 minuutin välein (ms)
   mapUpdateSubscription: Subscription;
+  id: string;
+  mapToken: string =
+    "pk.eyJ1IjoibWlra28xOTg1IiwiYSI6ImNsbmlyazhqczA2N20yeHFvbGpxaHozOW4ifQ.GdqmP1CH2_dAOa40He98-Q";
 
   constructor(
     private eventService: EventService,
     private router: Router,
     public locationService: LocationService,
     private store: Store<{ AppState: FilterState }>,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private route: ActivatedRoute
   ) {
     this.store.select(getMusic).subscribe((music) => {
       this.music = music;
@@ -49,14 +53,14 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.route.params.subscribe((params) => {
+      this.id = params["id"];
+      console.log(this.id);
+    });
+    this.locationService.getLocation();
     this.loadEventsAndRefreshMap(); // Alusta komponentti ja lisää markkerit kartalle
     // Kuuntele filtterimuutoksia
     // Alusta komponentti ja lisää markkerit kartalle
-    this.mapUpdateSubscription = interval(this.mapUpdateInterval).subscribe(
-      () => {
-        this.loadEventsAndRefreshMap();
-      }
-    );
 
     // Aseta aikavälin mukainen päivitys
   }
@@ -79,13 +83,26 @@ export class MapComponent implements OnInit, OnDestroy {
     });
   }
   filterEvents() {
+    const currentDate = new Date();
+    if (this.id) {
+      this.events = this.events.filter((e) => e._id === this.id);
+      return;
+    }
     // Suodata tapahtumat filtterien mukaisesti
     this.events = this.events.filter((event) => {
+      const parts = event.aloituspvm.split(", ");
+      const dateParts = parts[1].split(".").map((part) => parseInt(part, 10));
+
+      // Muodosta Date-objekti
+      const eventDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+
+      const isFutureEvent = eventDate > currentDate;
+
       return (
-        (this.music && event.genre === "music") ||
-        (this.family && event.genre === "family") ||
-        (this.food && event.genre === "food") ||
-        (this.sports && event.genre === "sports")
+        (this.music && event.genre === "music" && isFutureEvent) ||
+        (this.family && event.genre === "family" && isFutureEvent) ||
+        (this.food && event.genre === "food" && isFutureEvent) ||
+        (this.sports && event.genre === "sports" && isFutureEvent)
       );
     });
   }
@@ -109,28 +126,48 @@ export class MapComponent implements OnInit, OnDestroy {
 
       // Lisää koordinaatit lisättyjen joukkoon
       addedCoordinates.add(`${lat}-${lng}`);
+      if (this.id) {
+        markers.push({
+          lat: lat,
+          lng: lng,
+          title: event.nimi,
+          iconPath: `~/icons/${event.genre}.png`,
+          subtitle: event.kuvaus,
+          selected: true,
+          onCalloutTap: () => {
+            console.log("Marker callout tapped", event._id);
+            this.router.navigate(["event/", event._id]);
+          },
+        });
 
-      markers.push({
-        lat: lat,
-        lng: lng,
-        title: event.nimi,
-        iconPath: `~/icons/${event.genre}.png`,
-        subtitle: event.kuvaus,
-        selected: false,
-        onCalloutTap: () => {
-          console.log("Marker callout tapped");
-        },
-      });
+        markers.push({
+          lat: this.locationService.latitude,
+          lng: this.locationService.longitude,
+          title: "You are here",
+        });
+      } else {
+        markers.push({
+          lat: lat,
+          lng: lng,
+          title: event.nimi,
+          iconPath: `~/icons/${event.genre}.png`,
+          subtitle: event.kuvaus,
+          selected: false,
+          onCalloutTap: () => {
+            console.log("Marker callout tapped", event._id);
+            this.router.navigate(["event/", event._id]);
+          },
+        });
+
+        markers.push({
+          lat: this.locationService.latitude,
+          lng: this.locationService.longitude,
+          title: "You are here",
+        });
+      }
+      // Lisää markkerit kartalle
+      args.map.addMarkers(markers);
     });
-
-    markers.push({
-      lat: this.locationService.latitude,
-      lng: this.locationService.longitude,
-      title: "You are here",
-    });
-
-    // Lisää markkerit kartalle
-    args.map.addMarkers(markers);
   }
   navigateToBottombar() {
     this.router.navigate(["bottom-nav"]);

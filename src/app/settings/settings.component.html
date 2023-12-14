@@ -1,3 +1,5 @@
+<!--Asetukset valikko. -->
+
 <ScrollView>
   <StackLayout class="body">
     <Image
@@ -12,6 +14,7 @@
       horizontalAlignment="left"
       zIndex="10"
       margin="10"
+      [ngClass]="{ pressed: isPressed }"
     ></Image>
     <Label class="header" text="Settings"></Label>
     <StackLayout marginTop="30vh">
@@ -47,7 +50,7 @@
         <Label class="tip" text="Set distance for notifications"></Label>
       </StackLayout>
       <FlexboxLayout marginTop="20vh">
-        <Button class="iconbuttonpolicy"></Button>
+        <Button (tap)="routePrivacy()" class="iconbuttonpolicy"></Button>
         <Label class="text" text="Terms of Use and privacy policy"></Label>
       </FlexboxLayout>
       <FlexboxLayout marginTop="20vh">

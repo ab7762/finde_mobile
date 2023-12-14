@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { EventService } from "../event.service";
 import { Location } from "@angular/common";
 import { format } from "date-fns";
@@ -12,6 +12,7 @@ const secureStorage = new SecureStorage();
   styleUrls: ["./event.component.css"],
 })
 export class EventComponent {
+  isPressed: boolean = false;
   event: any;
   token: any;
   userid: any;
@@ -21,13 +22,15 @@ export class EventComponent {
   constructor(
     private route: ActivatedRoute,
     private eventService: EventService,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) {}
   // Haetaan reitin parametristä oikea id ja filteröidään tapahtumista oikea id.
   // Sitten tallennetaan muuttujaan oikeat tiedot, joita voidaan näyttää komponentissa.
   ngOnInit(): void {
     const id = String(this.route.snapshot.paramMap.get("id"));
     console.log(id);
+    this.id = id;
     this.eventService.getEvents().subscribe((res) => {
       let e = res;
       let ee = e.filter((event) => event._id === id);
@@ -43,8 +46,13 @@ export class EventComponent {
   }
   // Navigoidaan takaisin edelliseen näkymään
   goBack(): void {
-    this.location.back();
+    this.isPressed = !this.isPressed;
+    setTimeout(() => {
+      this.isPressed = false; // Aseta takaisin false
+      this.location.back(); // Suorita reititys
+    }, 200); // Aseta viive aikaan millisekunteina, esim. 3
   }
+  // Haetaan id:n perusteella, onko käyttäjä tykännyt tästä tapahtumasta
   async getLikedBoolean() {
     try {
       this.userid = await secureStorage.get({
@@ -68,12 +76,11 @@ export class EventComponent {
 
       // Päivitä liked-muuttuja sen mukaisesti
       this.liked = isEventLiked;
-      console.log("Onko tästä tapahtumasta tykätty?", this.liked);
     } catch (error) {
       console.error("Error fetching liked events:", error);
     }
   }
-
+  // Päivitetään käyttäjän id:n ja tapahtuman id:n perusteella käyttäjälle tapahtuma tykätyt tapahtumat taulukkoon
   async likeEvent() {
     try {
       this.token = await secureStorage.get({
@@ -97,6 +104,7 @@ export class EventComponent {
       .subscribe((res) => console.log(res));
     this.liked = !this.liked;
   }
+  // Poistetaan tapahtuma käyttäjän tykätyt taulukosta
   async dislike() {
     try {
       this.token = await secureStorage.get({
@@ -118,5 +126,10 @@ export class EventComponent {
       .unlikeEvent(this.userid, this.event[0]._id, this.token)
       .subscribe((res) => console.log(res));
     this.liked = !this.liked;
+  }
+  // Avataan kartta-komponentti dynaamista reittiä käyttäen, jolloin vain reitin kautta välitetty tapahtuma näkyy
+  // kartalla
+  openToMap() {
+    this.router.navigate(["map/", this.id]);
   }
 }

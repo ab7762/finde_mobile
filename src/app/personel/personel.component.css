@@ -12,13 +12,12 @@
 
 .logo {
   width: 50%;
-  justify-content: center;
-  flex: 1;
-  margin-top: 2%;
+  margin-top: -20vh;
+  text-align: center;
 }
 .menu {
   width: 8%;
-  position: absolute;
+  position: relative;
   margin-right: 1%;
 }
 
@@ -56,4 +55,21 @@
 
 .iconrow {
   margin-top: 7%;
+}
+
+.menuButton {
+  background-image: url("~/icons/asetuksetVarillinen-icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #323439;
+  height: 40vh;
+  width: 7%;
+  padding: 5em;
+  text-align: right;
+  margin-right: 5vw;
+  margin-top: 5wh;
+}
+.menuButton:active {
+  width: 20%;
 }

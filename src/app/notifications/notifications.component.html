@@ -7,6 +7,13 @@ Jokaiselle tapahtumalle välitetään tiedot card-komponentille.  -->
     src="~/images/finde-notifications.png"
     class="notificationsBanner"
   ></Image>
+  <Image
+    class="fas"
+    src="font://&#xf061;"
+    horizontalAlignment="right"
+    (pan)="onSwipe($event)"
+    [isUserInteractionEnabled]="true"
+  ></Image>
 
   <ActivityIndicator [busy]="isLoading"></ActivityIndicator>
   <ScrollView class="scroll">

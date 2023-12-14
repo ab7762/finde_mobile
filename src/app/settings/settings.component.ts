@@ -12,6 +12,7 @@ import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { TextField } from "@nativescript/core";
 import { AuthService } from "../auth.service";
 import { Location } from "@angular/common";
+import { Router } from "@angular/router";
 const secureStorage = new SecureStorage();
 @Component({
   selector: "ns-settings",
@@ -19,6 +20,7 @@ const secureStorage = new SecureStorage();
   styleUrls: ["./settings.component.css"],
 })
 export class SettingsComponent {
+  isPressed = false;
   user: boolean = false;
   showdistance: boolean = false;
   distance: number;
@@ -35,7 +37,8 @@ export class SettingsComponent {
     private store: Store<{ AppState: AuthState }>,
     private routerExtensions: RouterExtensions,
     private authService: AuthService,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) {
     this.store
       .select(getDistance)
@@ -160,7 +163,7 @@ export class SettingsComponent {
           .deleteUser(this.userid, this.token)
           .subscribe((res) => {
             console.log(res);
-          }); // 1. Dispatch the logout action to the store
+          });
         this.authService.logOut();
       }
     } else {
@@ -173,6 +176,14 @@ export class SettingsComponent {
   }
 
   goBack(): void {
-    this.location.back();
+    this.isPressed = !this.isPressed;
+    setTimeout(() => {
+      this.isPressed = false; // Aseta takaisin false
+      this.location.back(); // Suorita reititys
+    }, 200); // Aseta viive aikaan millisekunteina, esim. 3
+  }
+
+  routePrivacy() {
+    this.router.navigate(["userprivacy"]);
   }
 }

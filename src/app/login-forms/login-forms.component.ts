@@ -20,7 +20,7 @@ import {
 })
 export class LoginFormsComponent {
   buttonFlashState = "inactive";
-
+  isPressed = false;
   myForm: FormGroup;
   data: any;
   loggedIn$: Observable<boolean>;
@@ -45,6 +45,10 @@ export class LoginFormsComponent {
   }
   // Funktio, jolla siirrytään register-sivulle.
   routeRegister() {
-    this.router.navigate(["register"]);
+    this.isPressed = !this.isPressed;
+    setTimeout(() => {
+      this.isPressed = false; // Aseta takaisin false
+      this.router.navigate(["register"]); // Suorita reititys
+    }, 300); // Aseta viive aikaan millisekunteina, esim. 3
   }
 }

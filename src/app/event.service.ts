@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, of, throwError } from "rxjs";
 import { catchError, map, tap } from "rxjs/operators";
 import { SecureStorage } from "@nativescript/secure-storage";
+import { Event } from "./event";
 @Injectable({
   providedIn: "root",
 })
@@ -14,16 +15,16 @@ export class EventService {
 
   url: string = "https://backendwithlogin-1-u7980985.deta.app/events";
   url2: string = "https://backendwithlogin-1-u7980985.deta.app/users";
-  getEvents(): Observable<any> {
-    let data = this.http.get(this.url);
+  getEvents(): Observable<Event[]> {
+    let data = this.http.get<Event[]>(this.url);
     return data;
   }
-
-  getEvent(id: number): Observable<any> {
+  // Haetaan yksi tapahtuma id:n perusteella.
+  getEvent(id: string): Observable<Event> {
     const url = `${this.url}/${id}`;
     return this.http
-      .get(url)
-      .pipe(catchError(this.handleError(`getEvent id=${id}`)));
+      .get<Event>(url)
+      .pipe(catchError(this.handleError<Event>(`getEvent id=${id}`)));
   }
 
   private handleError<T>(operation = "operation", result?: T) {
@@ -33,7 +34,7 @@ export class EventService {
       return of(result as T);
     };
   }
-
+  // Tykätään tapahtumasta. Käyttäjän id ja tapahtuman id löytävät oikean paikan tallentaa tieto
   likeEvent(userid, eventid, token): Observable<any> {
     const url = `${this.url}/${userid}/${eventid}`;
 
@@ -47,10 +48,11 @@ export class EventService {
     // Tehdään HTTP-pyyntö käyttäen otsikoita
     return this.http.post(url, {}, { headers: headers });
   }
-  getLikedEvents(userid) {
-    return this.http.get(`${this.url2}/liked/${userid}`);
+  // Haetaan tietyn käyttäjän tykätyt tapahtumat
+  getLikedEvents(userid): Observable<Event> {
+    return this.http.get<Event>(`${this.url2}/liked/${userid}`);
   }
-
+  // Poistetaan tapahtuma käyttäjän tykätyt-taulukosta
   unlikeEvent(userid, eventid, token) {
     const url = `${this.url2}/${userid}/${eventid}`;
     const headers = {

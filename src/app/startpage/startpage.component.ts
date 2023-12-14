@@ -10,6 +10,7 @@ import { FilterState } from "../filter.reducer";
   styleUrls: ["./startpage.component.css"],
 })
 export class StartpageComponent {
+  isPressed = false;
   constructor(
     private router: Router,
     private store: Store<{ appState: FilterState }>
@@ -20,6 +21,10 @@ export class StartpageComponent {
   }
 
   routeLogin() {
-    this.router.navigate(["login"]);
+    this.isPressed = !this.isPressed;
+    setTimeout(() => {
+      this.isPressed = false; // Aseta takaisin false
+      this.router.navigate(["login"]); // Suorita reititys
+    }, 300); // Aseta viive aikaan millisekunteina, esim. 3
   }
 }

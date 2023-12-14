@@ -20,6 +20,7 @@
     horizontalAlignment="left"
     zIndex="10"
     margin="10"
+    [ngClass]="{ pressed: isPressed }"
   ></Image>
   <CardView
     row="1"
@@ -107,31 +108,42 @@
           [text]="this.event[0].kuvaus"
         ></Label>
       </StackLayout>
-      <Image
-        *ngIf="!this.liked"
-        (tap)="likeEvent()"
-        horizontalAlignment="right"
-        verticalAlignment="bottom"
-        height="auto"
-        class="fas"
-        width="10%"
-        marginBottom="10vh"
-        marginRight="10vw"
-        src="font://&#xf004;"
-      ></Image>
-      <Image
-        *ngIf="this.liked"
-        (tap)="dislike()"
-        horizontalAlignment="right"
-        verticalAlignment="bottom"
-        height="auto"
-        color="red"
-        class="fas"
-        width="10%"
-        marginBottom="10vh"
-        marginRight="10vw"
-        src="font://&#xf004;"
-      ></Image>
+      <FlexboxLayout orientation="horizontal" justifyContent="space-between">
+        <Image
+          (tap)="openToMap()"
+          horizontalAlignment="left"
+          verticalAlignment="bottom"
+          width="10%"
+          marginBottom="10vh"
+          marginLeft="10vw"
+          src="~/icons/markerVarillinen.png"
+        ></Image>
+        <Image
+          *ngIf="!this.liked"
+          (tap)="likeEvent()"
+          horizontalAlignment="right"
+          verticalAlignment="bottom"
+          height="auto"
+          class="fas"
+          width="10%"
+          marginBottom="10vh"
+          marginRight="10vw"
+          src="font://&#xf004;"
+        ></Image>
+        <Image
+          *ngIf="this.liked"
+          (tap)="dislike()"
+          horizontalAlignment="right"
+          verticalAlignment="bottom"
+          height="auto"
+          color="red"
+          class="fas"
+          width="10%"
+          marginBottom="10vh"
+          marginRight="10vw"
+          src="font://&#xf004;"
+        ></Image>
+      </FlexboxLayout>
     </StackLayout>
   </CardView>
 </GridLayout>

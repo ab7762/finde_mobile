@@ -38,7 +38,8 @@
 .events {
   color: white;
   text-align: center;
-  font-family: fantasy;
+  font-family: "Font Awesome 6 Brands", "fa-brands-400";
+  font-weight: 400;
 }
 
 .fas {

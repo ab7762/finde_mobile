@@ -17,6 +17,8 @@ import { ExtendedShowModalOptions } from "nativescript-windowed-modal";
   styleUrls: ["./register-forms.component.css"],
 })
 export class RegisterFormsComponent {
+  isPressed = false;
+  isPressedPrivacy = false;
   text2: string =
     "Rekisteröityminen epäonnistui. Tarkista internet-yhteys ja syötetyt tiedot.";
   constructor(
@@ -76,6 +78,17 @@ export class RegisterFormsComponent {
   }
   // Siirrytään login-sivulle
   routeLogin() {
-    this.router.navigate(["login"]);
+    this.isPressed = !this.isPressed;
+    setTimeout(() => {
+      this.isPressed = false; // Aseta takaisin false
+      this.router.navigate(["login"]); // Suorita reititys
+    }, 300); // Aseta viive aikaan millisekunteina, esim. 3
+  }
+  routePrivacy() {
+    this.isPressedPrivacy = !this.isPressedPrivacy;
+    setTimeout(() => {
+      this.isPressedPrivacy = false; // Aseta takaisin false
+      this.router.navigate(["userprivacy"]); // Suorita reititys
+    }, 300); // Aseta viive aikaan millisekunteina, esim. 3
   }
 }

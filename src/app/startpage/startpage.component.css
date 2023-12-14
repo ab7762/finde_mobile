@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Afacad&family=Lato:ital,wght@1,700&family=Roboto+Slab&display=swap");
+
 .body {
   background-color: #323439;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
@@ -41,6 +43,7 @@
   font-weight: bold;
   color: #ddd2b2;
   margin-top: 1rem;
+  font-family: "Roboto Slab", serif;
 }
 
 .login {
@@ -49,9 +52,10 @@
   color: #ddd2b2;
   margin-top: 1rem; /* Adjust vertical margin as needed */
   text-decoration: underline;
+  font-family: "Roboto Slab", serif;
 }
 .login:active {
-  color: whitesmoke;
+  color: rgb(10, 9, 9);
 }
 
 .logo {
@@ -59,4 +63,8 @@
   margin-top: 50px;
   height: auto;
   margin-top: 30%;
+}
+
+.pressed {
+  color: white; /* Voit säätää haluamaasi väriä */
 }

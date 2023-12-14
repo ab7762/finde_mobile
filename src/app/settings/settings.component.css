@@ -138,3 +138,7 @@
   border-color: red;
   border-width: 5px;
 }
+
+.pressed {
+  background-color: rgb(44, 42, 42);
+}

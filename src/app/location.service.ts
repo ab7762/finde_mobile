@@ -28,7 +28,7 @@ export class LocationService {
         }
       });
   }
-
+  // Funktion, joka vertaa kahden sijainnin koordinaatteja ja palauttaa etäisyyden
   getDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
     // The math module contains a function
     // named toRadians which converts from

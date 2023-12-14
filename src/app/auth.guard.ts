@@ -1,3 +1,5 @@
+//Reittivahti , joka suojaa reitit kunnes sisäänkirjautuminen on true
+
 import { CanActivateFn, Router } from "@angular/router";
 import { Injectable, inject } from "@angular/core";
 import { Store } from "@ngrx/store";

@@ -20,8 +20,9 @@ import { EventComponent } from "./event/event.component";
 import { LikedEventsComponent } from "./liked-events/liked-events.component";
 import { LoadingPageComponent } from "./loading-page/loading-page.component";
 import { SettingsComponent } from "./settings/settings.component";
+import { UserPrivacyComponent } from "./user-privacy/user-privacy.component";
 const routes: Routes = [
-  { path: "", redirectTo: "login", pathMatch: "full" },
+  { path: "", redirectTo: "start", pathMatch: "full" },
 
   { path: "register", component: RegisterComponent, canActivate: [LogGuard] },
   { path: "start", component: StartpageComponent, canActivate: [LogGuard] },
@@ -32,6 +33,7 @@ const routes: Routes = [
   },
   { path: "login", component: LoginComponent, canActivate: [LogGuard] },
   { path: "map", component: MapComponent, canActivate: [AuthGuard] },
+  { path: "map/:id", component: MapComponent, canActivate: [AuthGuard] },
   {
     path: "notifications",
     component: NotificationsComponent,
@@ -40,9 +42,12 @@ const routes: Routes = [
   { path: "personel", component: PersonelComponent, canActivate: [AuthGuard] },
   { path: "event/:id", component: EventComponent },
   { path: "likedevents", component: LikedEventsComponent },
-  { path: "settings", component: SettingsComponent },
+  { path: "settings", component: SettingsComponent, canActivate: [AuthGuard] },
+  {
+    path: "userprivacy",
+    component: UserPrivacyComponent,
+  },
 ];
-
 @NgModule({
   imports: [NativeScriptRouterModule.forRoot(routes)],
   exports: [NativeScriptRouterModule],

@@ -4,6 +4,9 @@
   overflow: hidden;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.304);
 }
+.pressed {
+  background-color: #7c8394;
+}
 
 .image {
   width: 20%;

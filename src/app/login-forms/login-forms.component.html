@@ -42,6 +42,7 @@
       <Label
         class="registered_down"
         text="Register"
+        [ngClass]="{ pressed: isPressed }"
         (tap)="routeRegister()"
       ></Label>
     </StackLayout>

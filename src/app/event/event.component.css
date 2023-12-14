@@ -9,3 +9,6 @@
 .t-36 {
   font-size: 36;
 }
+.pressed {
+  background-color: rgb(44, 42, 42);
+}

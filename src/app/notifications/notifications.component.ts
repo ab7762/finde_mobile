@@ -70,6 +70,7 @@ export class NotificationsComponent implements OnInit {
         takeUntil(this.destroy$) // Lopettaa tilauksen komponentin tuhoutuessa
       )
       .subscribe(() => {
+        this.locationService.getLocation();
         this.loadEvents();
       });
   }
@@ -91,25 +92,74 @@ export class NotificationsComponent implements OnInit {
 
   filterEvents() {
     // Suodata tapahtumat filtterien mukaisesti
-    this.events = this.events.filter((event) => {
-      console.log(event, "Tässä tämän hetkinen tapahtuma");
-      const isMusicMatch = this.music === (event.genre === "music");
-      const isFamilyMatch = this.family === (event.genre === "family");
-      const isFoodMatch = this.food === (event.genre === "food");
-      const isSportsMatch = this.sports === (event.genre === "sports");
-      const isDistanceMatch = this.eventInsideDistance(
-        event.sijainti[0].lat,
-        event.sijainti[0].long,
-        this.locationService.latitude,
-        this.locationService.longitude
-      );
-      console.log(isMusicMatch, isFamilyMatch, isFoodMatch, isSportsMatch);
+    // Tapahtuman pitää olla suodatuksessa valittua genreä
+    // Tapahtuman pitää olla valitun välimatkan sisällä
+    // Tapahtuman pitää olla tulevaisuudessa, ei vanhoja
+    const currentDate = new Date();
 
-      return (
-        (isMusicMatch || isFamilyMatch || isFoodMatch || isSportsMatch) &&
-        isDistanceMatch
-      );
-    });
+    this.events = this.events
+      .filter((event) => {
+        console.log(event, "Tässä tämän hetkinen tapahtuma");
+        const isMusicMatch = this.music === true && event.genre === "music";
+        const isFamilyMatch = this.family === true && event.genre === "family";
+        const isFoodMatch = this.food === true && event.genre === "food";
+        const isSportsMatch = this.sports === true && event.genre === "sports";
+        const isDistanceMatch = this.eventInsideDistance(
+          event.sijainti[0].lat,
+          event.sijainti[0].long,
+          this.locationService.latitude,
+          this.locationService.longitude
+        );
+        const parts = event.aloituspvm.split(", ");
+        const dateParts = parts[1].split(".").map((part) => parseInt(part, 10));
+
+        // Muodosta Date-objekti
+        const eventDate = new Date(
+          dateParts[2],
+          dateParts[1] - 1,
+          dateParts[0]
+        );
+        const isFutureEvent = eventDate > currentDate;
+
+        console.log(
+          isMusicMatch,
+          isFamilyMatch,
+          isFoodMatch,
+          isSportsMatch,
+          isFutureEvent
+        );
+
+        return (
+          (isMusicMatch || isFamilyMatch || isFoodMatch || isSportsMatch) &&
+          isDistanceMatch &&
+          isFutureEvent
+        );
+      })
+      .sort((a, b) => {
+        const parts = a.aloituspvm.split(", ");
+        const dateParts = parts[1].split(".").map((part) => parseInt(part, 10));
+
+        // Muodosta Date-objekti
+        const eventDateA = new Date(
+          dateParts[2],
+          dateParts[1] - 1,
+          dateParts[0]
+        );
+        const parts2 = b.aloituspvm.split(", ");
+        const dateParts2 = parts2[1]
+          .split(".")
+          .map((part) => parseInt(part, 10));
+
+        // Muodosta Date-objekti
+        const eventDateb = new Date(
+          dateParts2[2],
+          dateParts2[1] - 1,
+          dateParts2[0]
+        );
+        const dateA: any = new Date(eventDateA);
+        const dateB: any = new Date(eventDateb);
+        return dateA - dateB;
+      });
   }
   onSwipe(args: PanGestureEventData) {
     this.ngZone.run(() => {

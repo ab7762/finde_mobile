@@ -86,3 +86,7 @@
 .scroll {
   height: 100%;
 }
+
+.pressed {
+  color: white;
+}

@@ -91,6 +91,17 @@ export class LoginComponent {
                   .then((success) =>
                     console.log("Successfully set a value? " + success)
                   );
+                secureStorage
+                  .set({
+                    key: "sposti",
+                    value: payload.sposti,
+                  })
+                  .then((success) =>
+                    console.log("Successfully set a value? " + success)
+                  )
+                  .catch((error) => {
+                    console.error("Error setting sposti value:", error);
+                  });
                 this.store.dispatch(login());
                 this.wait(5000);
                 this.loading = false;

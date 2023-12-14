@@ -49,12 +49,13 @@ export class LikedEventsComponent {
         }
       });
   }
+
+  // Haetaan tykätyt tapahtumat käyttäjän id:n perusteella
   async getLikedEvents() {
     try {
       this.userid = await secureStorage.get({
         key: "id",
       });
-      console.log(this.userid);
     } catch (error) {
       console.error("Error retrieving token from secure storage:", error);
     }
@@ -66,6 +67,7 @@ export class LikedEventsComponent {
     this.destroy$.next();
     this.destroy$.complete();
   }
+  //Jos swaipataan vasemmalle nuolta tarpeeksi pitkälle, navigoidaan bottom-nav komponentille
   onSwipe(args: PanGestureEventData) {
     this.ngZone.run(() => {
       console.log("onSwipe called", args.state, args.deltaX);

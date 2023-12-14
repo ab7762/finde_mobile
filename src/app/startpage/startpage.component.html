@@ -10,6 +10,11 @@
     ></Button>
     <label class="registered" text="Already have an account?"></label>
 
-    <label class="login" text="Log in here!" (tap)="routeLogin()"></label>
+    <label
+      class="login"
+      [ngClass]="{ pressed: isPressed }"
+      text="Log in here!"
+      (tap)="routeLogin()"
+    ></label>
   </FlexboxLayout>
 </StackLayout>

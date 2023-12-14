@@ -14,6 +14,7 @@ import { ModalDialogService, ModalDialogOptions } from "@nativescript/angular";
 import { ModalComponent } from "./modal/modal.component";
 import { ExtendedShowModalOptions } from "nativescript-windowed-modal";
 import { SecureStorage } from "@nativescript/secure-storage";
+import { User } from "./user";
 const secureStorage = new SecureStorage();
 @Injectable({
   providedIn: "root",
@@ -23,7 +24,8 @@ export class AuthService {
   url2: string = "https://d17e239b9ewh66.cloudfront.net/users/register";
   url3: string = "https://backendwithlogin-1-u7980985.deta.app/users";
   text1: string =
-    "Vahvistusviesti lähetetty sähköpostiin. Klikkaa linkkiä niin voit kirjautua.";
+    "Confirmation message sent to your email. Click the link to log in.";
+  text2: string = "Login successful. Welcome to use the Finde app!";
   isLoggedIn: boolean;
   public token: string;
   private jwtHelp = new JwtHelperService();
@@ -39,6 +41,7 @@ export class AuthService {
     });
   }
 
+  // Sisäänkirjautuminen. Onnistuessa asetetaan arvot securestorageen ja siirrytään bottom-nav komponentille.
   logIn(email: string, password: string): Observable<boolean> {
     console.log("Terve");
     return this.http.post(this.url, { sposti: email, salasana: password }).pipe(
@@ -103,8 +106,8 @@ export class AuthService {
               );
           }
           this.store.dispatch(login());
+          this.openModal1(this.text2);
 
-          alert("Login succesful! Welcome");
           this.routerExtensions.navigate(["/bottom-nav"], {
             clearHistory: true,
           });
@@ -115,7 +118,8 @@ export class AuthService {
             .subscribe((appState) => {
               console.log("loggedIn:", appState.appState.loggedIn);
             });
-          alert(res.message);
+          this.openModal1(res.message);
+
           return false;
         } // Palauta false, jos tokenia ei löydy
       }),
@@ -125,7 +129,8 @@ export class AuthService {
       })
     );
   }
-
+  // Rekisteröityminen. Onnistuessa palautetaan modal, jossa ilmoitetaan, että sähköpostiin on lähtenyt
+  // vahvistusviesti.
   signUp(
     firstname: string,
     lastname: string,
@@ -164,22 +169,22 @@ export class AuthService {
 
     console.log("Modal response:", result);
   }
-  deleteUser(userid, token) {
+
+  // Käyttäjän poistaminen id: perusteella.
+  deleteUser(userid, token): Observable<User> {
     const url = `${this.url3}/${userid}`;
     const headers = {
       "x-access-token": token,
       // Lisää muita otsikoita tarvittaessa
     };
-    return this.http.delete(url, { headers: headers });
+    return this.http.delete<User>(url, { headers: headers });
   }
-
+  // Uloskirjautuminen. Tyhjennetään securestorage, kirjaudutaan ulos ja siirrytään aloitusnäkymään.
   async logOut() {
     this.store.dispatch(logout());
 
-    // 2. Clear secure storage
     await this.clearSecureStorage();
 
-    // 3. Navigate to the "start" view
     this.routerExtensions.navigate(["start"], {
       clearHistory: true,
       transition: {
@@ -187,7 +192,7 @@ export class AuthService {
       },
     });
   }
-
+  // Securestoragen tyhjennys
   private async clearSecureStorage() {
     secureStorage
       .removeAll()

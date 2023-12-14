@@ -12,7 +12,10 @@
       <Image src="~/icons/map.png" class="fas"></Image>
     </MDTabStripItem>
     <MDTabStripItem (tap)="changeActive(2)" class="special">
-      <Label [ngClass]="{ active2: this.active == 2 }" text="Person"></Label>
+      <Label
+        [ngClass]="{ active2: this.active == 2 }"
+        text="Categories"
+      ></Label>
       <Image src="~/icons/kategoriaalapalkki.png" class="fas"></Image>
     </MDTabStripItem>
   </MDTabStrip>

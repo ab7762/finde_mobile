@@ -109,5 +109,13 @@
 }
 
 .scroll {
-  height: 150%;
+  height: 170%;
+}
+
+.pressed {
+  color: white;
+}
+
+.privacyblack {
+  background-color: black;
 }

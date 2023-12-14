@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, ChangeDetectorRef } from "@angular/core";
 import { format } from "date-fns";
 import { Router, RouterLink } from "@angular/router";
 import { registerElement } from "@nativescript/angular";
@@ -14,11 +14,13 @@ registerElement("CardView", () => CardView);
   styleUrls: ["./card.component.css"],
 })
 export class CardComponent {
+  isPressed: boolean = false;
   distance: any;
   @Input() eventData: any;
   constructor(
     public locationService: LocationService,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {}
   // Otetaan vastaan tietoja
 
@@ -29,12 +31,23 @@ export class CardComponent {
   }
 
   routeEvent() {
-    console.log(this.eventData);
     const navigationExtras: NavigationExtras = {
       state: {
         eventData: this.eventData,
       },
     };
     this.router.navigate(["event"], navigationExtras);
+  }
+  buttonActive() {
+    this.isPressed = true;
+    this.cdr.detectChanges();
+    setTimeout(() => {
+      this.isPressed = false;
+      this.cdr.detectChanges(); // Aseta takaisin false
+    }, 100); // Aseta viive aikaan millisekunteina, esim. 3
+  }
+
+  ngOnDestroy() {
+    this.isPressed = false;
   }
 }

@@ -71,14 +71,21 @@
     </StackLayout>
 
     <stackLayout width="80%">
-      <CheckBox
-        fillColor="white"
-        class="checkbox"
-        text="I agree to the terms of use and have read the privacy policy"
-        [(ngModel)]="isChecked"
-        (checkedChange)="changeChecked($event)"
-      ></CheckBox>
-
+      <stackLayout orientation="horizontal">
+        <CheckBox
+          fillColor="white"
+          class="checkbox"
+          [(ngModel)]="isChecked"
+          (checkedChange)="changeChecked($event)"
+        ></CheckBox>
+        <Label
+          (tap)="routePrivacy()"
+          [ngClass]="{ privacyblack: isPressedPrivacy }"
+          color="white"
+          textWrap="true"
+          text="I agree to the terms of use and have read the privacy policy"
+        ></Label>
+      </stackLayout>
       <FlexboxLayout marginTop="7%">
         <Button
           [isEnabled]="
@@ -100,8 +107,12 @@
       ></Label>
 
       <Label class="registered" text="Already registered?"></Label>
-      <Label class="registered_down" text="Login" (tap)="routeLogin()"></Label>
+      <Label
+        class="registered_down"
+        text="Login"
+        [ngClass]="{ pressed: isPressed }"
+        (tap)="routeLogin()"
+      ></Label>
     </stackLayout>
-    ></StackLayout
-  >
+  </StackLayout>
 </ScrollView>

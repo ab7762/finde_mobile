@@ -1,3 +1,18 @@
+.body {
+  background-color: #323439;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-image: url("~/icons/kuvio_2_1.png"); /* ympyrät */
+  background-position: center; /* Ympyrä keskelle */
+  background-repeat: no-repeat; /* Prevent repeating the image */
+  background-size: 140% 90%; /* Customize the background image size */
+}
+
+.logo {
+  width: 50%; /* Koko */
+  text-align: center;
+  height: auto;
+  margin-top: 30vh;
+}
 .modal {
   margin: 20;
   margin-top: 35;

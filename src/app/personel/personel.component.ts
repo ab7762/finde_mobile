@@ -15,6 +15,7 @@ import {
 } from "../filter.actions";
 import { getFamily, getMusic, getFood, getSports } from "../filter.selectors";
 import { Router, RouterLink } from "@angular/router";
+
 const secureStorage = new SecureStorage();
 @Component({
   selector: "ns-personel",

@@ -9,6 +9,8 @@ tietoja notifications-komponentille haetuista tiedoista. -->
   radius="40"
   width="90%"
   height="40%"
+  (tap)="buttonActive()"
+  [ngClass]="{ pressed: isPressed }"
 >
   <FlexboxLayout padding="7vh 7vh">
     <StackLayout class="image">
@@ -32,7 +34,7 @@ tietoja notifications-komponentille haetuista tiedoista. -->
         <Image
           src="~/icons/markerVarillinen.png"
           class="fas"
-          width="12"
+          width="10"
           color="white"
         ></Image>
         <label
@@ -58,7 +60,7 @@ tietoja notifications-komponentille haetuista tiedoista. -->
       <FlexboxLayout justifyContent="space-between">
         <FlexboxLayout flexDirection="row" justifyContent="space-between">
           <Image
-            src="~/icons/lippuVarillinen.png"
+            src="~/icons/at-Varillinen.png"
             class="fas"
             width="10"
             color="white"
@@ -66,7 +68,7 @@ tietoja notifications-komponentille haetuista tiedoista. -->
           <label
             class="tickets"
             horizontalAlignment="left"
-            [text]="eventData.lipunHinta"
+            [text]="eventData.tapahtumapaikka"
           ></label>
         </FlexboxLayout>
       </FlexboxLayout>
