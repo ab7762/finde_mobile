@@ -27,8 +27,7 @@ export class MapComponent implements OnInit, OnDestroy {
   mapUpdateInterval = 5000; // 1 minuutin välein (ms)
   mapUpdateSubscription: Subscription;
   id: string;
-  mapToken: string =
-    "pk.eyJ1IjoibWlra28xOTg1IiwiYSI6ImNsbmlyazhqczA2N20yeHFvbGpxaHozOW4ifQ.GdqmP1CH2_dAOa40He98-Q";
+  mapToken: string = "token here";
 
   constructor(
     private eventService: EventService,
